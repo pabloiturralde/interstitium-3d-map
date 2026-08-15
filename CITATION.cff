@@ -6,7 +6,7 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.21584351
     description: Concept DOI (all versions), Zenodo
-date-released: 2026-08-12
+date-released: 2026-08-15
 type: software
 authors:
   - family-names: Iturralde

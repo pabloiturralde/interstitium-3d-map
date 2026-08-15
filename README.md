@@ -21,8 +21,8 @@ The map is where that claim becomes testable. Hydration is a continuous, model-w
 > **Author:** Pablo Iturralde · ORCID: [`0000-0003-4106-4433`](https://orcid.org/0000-0003-4106-4433)
 > **Affiliation:** Brown University
 > **Copyright:** © 2026 Pablo Iturralde
-> **Version:** 1.1.0 · 2026-08-12
-> **Status:** Repository private until the companion manuscript is submitted; public thereafter.
+> **Version:** 1.1.0 · 2026-08-15
+>  **Status:** Public. Companion manuscript submitted to *Fluids and Barriers of the CNS*, 2026-08-15; under editorial consideration.
 > **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) from the v1.1.0 release onward. See [`LICENSE`](./LICENSE).
 
 ---
