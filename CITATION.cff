@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you reference this work, please cite it as below."
+title: "The Human Interstitium, Interactive 3D Map"
+version: 1.1.0
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21584351
+    description: Concept DOI (all versions), Zenodo
+date-released: 2026-08-12
+type: software
+authors:
+  - family-names: Iturralde
+    given-names: Pablo
+    affiliation: Brown University
+    orcid: "https://orcid.org/0000-0003-4106-4433"
+abstract: >-
+  An interactive, literature-grounded 3D visualization of the human
+  interstitium and the five fluid systems it physically connects: the
+  circulatory, lymphatic, glymphatic, ventricular (CSF), and nervous
+  systems. Ships as self-contained desktop and mobile standalone HTML
+  builds with click-to-identify parts, flow animation, time-speed
+  control, hydration scenarios, and a live constriction/congestion
+  assessment panel.
+keywords:
+  - interstitium
+  - glymphatic system
+  - cerebrospinal fluid
+  - lymphatic system
+  - extracellular matrix
+  - 3D visualization
+  - interactive anatomy
+  - scientific visualization
+  - interstitial cell atlas
+  - interstitial hydraulic gating
+  - perivascular space
+license: CC-BY-4.0
+license-url: "https://github.com/pabloiturralde/interstitium-3d-map/blob/main/LICENSE"
+url: "https://github.com/pabloiturralde/interstitium-3d-map"

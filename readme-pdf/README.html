@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Human Interstitium, README</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined){ visibility:hidden; }
+  doc-page{
+    --ink:#16202e; --dim:#4a596b; --faint:#7d8a9b; --accent:#0f7d72; --rule:#dce3ea;
+    font-family:"Newsreader", Georgia, serif; color:var(--ink); font-size:11.5pt; line-height:1.5;
+  }
+  h1{ font-family:"Space Grotesk", sans-serif; font-size:23pt; line-height:1.1; letter-spacing:-0.015em; margin:0 0 4pt; }
+  .doi{ display:inline-block; font-family:"IBM Plex Mono", monospace; font-size:8.5pt; letter-spacing:.02em;
+    color:#fff; background:var(--accent); padding:4pt 9pt; border-radius:5pt; margin:2pt 0 12pt; }
+  h2{ font-family:"Space Grotesk", sans-serif; font-size:13pt; letter-spacing:-0.01em; margin:20pt 0 7pt;
+    padding-bottom:4pt; border-bottom:1.5px solid var(--rule); color:var(--ink); }
+  p{ margin:0 0 8pt; text-wrap:pretty; }
+  .lead{ font-size:12pt; }
+  .companion{ font-family:"Space Grotesk", sans-serif; font-size:10.5pt; line-height:1.5; background:#eef6f4;
+    border-left:3px solid var(--accent); padding:11pt 13pt; border-radius:0 6pt 6pt 0; margin:12pt 0; color:#1d3b37; }
+  .meta{ border:1px solid var(--rule); border-radius:8pt; padding:11pt 13pt; margin:12pt 0; font-family:"Space Grotesk", sans-serif; font-size:9.5pt; line-height:1.7; }
+  .meta b{ color:var(--accent); }
+  code.mono{ font-family:"IBM Plex Mono", monospace; font-size:9pt; background:#f1f4f7; padding:1px 5px; border-radius:4px; color:#243244; }
+  table{ width:100%; border-collapse:collapse; margin:8pt 0; font-size:9.5pt; }
+  th{ text-align:left; font-family:"Space Grotesk", sans-serif; font-size:8.5pt; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--faint); border-bottom:1.5px solid var(--rule); padding:5pt 8pt 5pt 0; }
+  td{ padding:5pt 8pt 5pt 0; border-bottom:1px solid #eef2f6; vertical-align:top; }
+  td:first-child{ font-family:"IBM Plex Mono", monospace; font-size:8.5pt; color:#243244; white-space:nowrap; }
+  ul{ margin:4pt 0 8pt; padding-left:16pt; }
+  li{ margin:0 0 5pt; text-wrap:pretty; }
+  li b, p b{ font-weight:600; }
+  .refs li{ font-size:10pt; color:var(--dim); }
+  .hyp{ border:1px solid var(--accent); border-radius:8pt; padding:12pt 14pt; margin:12pt 0; background:#f7fbfa; }
+  .hyp .tag{ font-family:"IBM Plex Mono", monospace; font-size:7.5pt; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); display:block; margin-bottom:5pt; }
+  .hyp p:last-child{ margin-bottom:0; }
+  .foot{ font-family:"IBM Plex Mono", monospace; font-size:8pt; color:var(--faint); }
+  a{ color:var(--accent); text-decoration:none; }
+  .hdr{ font-family:"IBM Plex Mono", monospace; font-size:7.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+  .ftr{ font-family:"IBM Plex Mono", monospace; font-size:7.5pt; color:var(--faint); display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<doc-page margin="0.85in">
+  <div slot="header" class="hdr">The Human Interstitium, Interactive 3D Map · v1.1.0</div>
+  <div slot="footer" class="ftr"><span>© 2026 Pablo Iturralde</span><span>DOI 10.5281/zenodo.21584351</span></div>
+
+  <h1>The Human Interstitium<br />Interactive 3D Map</h1>
+  <span class="doi">DOI · 10.5281/zenodo.21584351</span>
+
+  <p class="lead">An interactive, literature-grounded 3D visualization of the human interstitium and the five fluid systems it physically connects: the <b>circulatory</b>, <b>lymphatic</b>, <b>glymphatic</b>, <b>ventricular (CSF)</b>, and <b>nervous</b> systems. Built as a schematic composite informed by the primary literature rather than a raw electron-microscopy reconstruction.</p>
+
+  <div class="companion">This interactive map is the digital <b>companion to the review <b>“The cellular lining of a continuous fluid compartment”</b> (Iturralde, 2026), submitted to <i>Fluids and Barriers of the CNS</i> and referred to throughout as the <i>Interstitial Cell Atlas</i>, and the <b>working instrument of that review’s central hypothesis</b>. It renders the atlas’s thirteen stromal/interstitial cell populations as a toggleable overlay and stages the review’s disease scenarios, perineural-space collapse, glymphatic clearance failure, ischemic small-vessel disease (CADASIL/NOTCH3), and edema, as one-click, figure-exportable views.</div>
+
+  <div class="hyp">
+    <span class="tag">The hypothesis this tool visualizes</span>
+    <p><b>Interstitial Hydraulic Gating (IHG)</b>: the central hypothesis of the companion review (draft v12). The interstitium is not passive packing but a mechanically active, hydration-dependent gate on every compartment it bounds. Interstitial volume, set by local matrix protein composition and systemic hydration, determines the calibre of the axons, capillaries and perivascular conduits running through it. Two opposite failures of that gate converge on the same tissue: <b>collapse</b> (dehydration, matrix compaction) throttles perineural and perivascular conduits, while <b>distension</b> (edema, congestion) raises pressure on the same structures. Neurodegeneration and cerebral small-vessel disease are, on this account, reachable by a single mechanical route.</p>
+    <p>The map is where that claim becomes testable. Hydration is a continuous, model-wide parameter, not an illustration: moving it recomputes channel width, matrix density, protein conformation, fluid volume, and flow rate for all five systems at once, and the live constriction/congestion panel reports each system’s deviation from normal. The published Figures 3 and 4 are deterministic presets of this same model, so any reader can reproduce, or contradict, the panels by loading the tool and sweeping the parameter themselves.</p>
+  </div>
+
+  <div class="meta">
+    <b>Author</b> &nbsp;Pablo Iturralde · ORCID 0000-0003-4106-4433<br />
+    <b>Affiliation</b> &nbsp;Brown University<br />
+    <b>Copyright</b> &nbsp;© 2026 Pablo Iturralde<br />
+    <b>Version</b> &nbsp;1.1.0 · 2026-08-12<br />
+    <b>Status</b> &nbsp;Repository private until the companion manuscript is submitted; public thereafter.<br />
+    <b>License</b> &nbsp;<b>CC BY 4.0</b> from the v1.1.0 release onward. See LICENSE.
+  </div>
+
+
+  <h2>Contents</h2>
+  <table>
+    <thead><tr><th>File</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Interstitial-System-3D-Map.html</td><td>Desktop version (source; loads three.js via CDN)</td></tr>
+      <tr><td>…_desktop_v1.1.0.html</td><td>Desktop, self-contained single file (as archived on Zenodo)</td></tr>
+      <tr><td>Interstitial-System-3D-Map-Mobile.html</td><td>Mobile version, tap-select, bottom-sheet UI, confocal palette</td></tr>
+      <tr><td>…_mobile_v1.1.0.html</td><td>Mobile, self-contained single file (as archived on Zenodo)</td></tr>
+      <tr><td>interstitium-model.js</td><td>Shared model: geometry, materials, systems, flows, hydration logic</td></tr>
+      <tr><td>three-d-stage.js</td><td>3D viewer/exporter shell (renderer, lighting, OrbitControls, OBJ/GLB export)</td></tr>
+      <tr><td>index.html</td><td>Redirect to the desktop version</td></tr>
+      <tr><td>figures/</td><td>Figures 1-4 of the companion review, rendered from this model</td></tr>
+      <tr><td>manuscripts/</td><td>Manuscript drafts (current: v12, FBCNS format), see <code>manuscripts/README.md</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Running it</h2>
+  <ul>
+    <li><b>Desktop:</b> open <code>Interstitial-System-3D-Map.html</code> in a modern browser (Chrome, Safari, Firefox, Edge).</li>
+    <li><b>In a browser, no download:</b> <a href="https://pabloiturralde.github.io/interstitium-3d-map/">pabloiturralde.github.io/interstitium-3d-map/</a> — served by GitHub Pages; phones and tablets are routed to the touch build automatically. Note that Zenodo serves its files as downloads and does not run HTML in the browser, so this is the link for anyone who wants to just open it.</li>
+    <li><b>Offline / portable:</b> open <code>…_desktop_v1.1.0.html</code> (or <code>…_mobile_v1.1.0.html</code>) directly, no server needed.</li>
+    <li><b>iPhone / iPad:</b> save <code>…_mobile_v1.1.0.html</code> to the <b>Files</b> app and open it there. Do <b>not</b> open it through a Google Drive link, Drive serves HTML as plain text and shows source code instead of running it.</li>
+  </ul>
+
+  <h2>Features</h2>
+  <ul>
+    <li><b>Dual scale</b>: whole-body organ schematic with a microstructural callout anchored at the cortical-meningeal boundary, where all five systems converge.</li>
+    <li><b>~1,000 named parts</b> across color-coded types, with tap/click-to-identify and literature notes.</li>
+    <li><b>Cell-atlas overlay</b>: the review’s thirteen stromal/interstitial populations as numbered lineage pins, with markers, niche, and reference; disputed identities flagged.</li>
+    <li><b>Scenarios</b>: Homeostasis, Perineural collapse, Glymphatic failure, Ischemic/CADASIL, Edema, and Continuity, each staging systems + hydration + camera with a citable caption.</li>
+    <li><b>Flow animation</b>: erythrocytes, lymph uptake, interstitial drift, action potentials, the glymphatic clearance cycle (CSF influx / amyloid efflux), and ventricular CSF.</li>
+    <li><b>Time-speed control</b>: 1× / 2× / 10× / 100× / 1000× to reveal slow fluidic dynamics.</li>
+    <li><b>Hydration scenarios</b>: Dehydrated / Low / Normal / High, affecting channel width, matrix density, protein conformation, fluid volume, and flow rate.</li>
+    <li><b>Constriction / congestion assessment</b>: a live per-system flow-vs-normal panel with warnings and an axonal-damage risk alert.</li>
+    <li><b>Figure export</b>: clean figure mode plus high-resolution PNG (single/double column) and a ×4 hydration condition matrix; OBJ+MTL / GLB model export retained.</li>
+  </ul>
+
+  <h2>Figures</h2>
+  <p>The four figures of the companion review are generated from this same model and live in <code>figures/</code> (mirrored inside the paper folder). Rendering is deterministic, the same scenario and hydration settings reproduce the published panels exactly.</p>
+  <table>
+    <thead><tr><th>Figure</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td>Figure1_key_figure.png</td><td>Thirteen interstitial/stromal populations on a schematic human body, insets A-F, five-lineage colour key</td></tr>
+      <tr><td>Figure2_compartment_crosswalk.png</td><td>Stromal cell identity mapped onto fluid-transport compartment, with measured baseline velocities</td></tr>
+      <tr><td>Figure3_hydration_states.png</td><td>Hydration state reconfiguring every fluid compartment across four states</td></tr>
+      <tr><td>Figure4_scenarios.png</td><td>Six scenario states linking atlas populations to compartment pathophysiology</td></tr>
+    </tbody>
+  </table>
+  <p>Figures 3 and 4 are the visual statement of the <b>Interstitial Hydraulic Gating</b> hypothesis: the collapse and distension limbs of the gate, side by side, on one anatomy.</p>
+
+  <h2>Scientific basis</h2>
+  <p>The model is a schematic synthesis grounded in the <b>41 references</b> of the companion review (<code>manuscripts/comprehensive-interstitial-cell-atlas/refs.bib</code>). Its structural claims rest on, among others:</p>
+  <ul class="refs">
+    <li>Benias, P. C., et al. (2018). <i>Structure and distribution of an unrecognized interstitium in human tissues.</i> Scientific Reports.</li>
+    <li>Cenaj, O., et al. (2021). <i>Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans.</i> Communications Biology.</li>
+    <li>Iliff, J. J., et al. (2012). <i>A paravascular pathway facilitates CSF flow… (the glymphatic system).</i> Science Translational Medicine.</li>
+    <li>Louveau, A., et al. (2015). <i>Structural and functional features of central nervous system lymphatic vessels.</i> Nature.</li>
+    <li>Møllgård, K., et al. (2023). <i>A mesothelium divides the subarachnoid space into functional compartments.</i> Science.</li>
+  </ul>
+  <p>The baseline flow velocities the hydration model scales, and therefore the quantitative spine of the IHG hypothesis, are taken from direct measurement:</p>
+  <ul class="refs">
+    <li>Chary, S. R. &amp; Jain, R. K. (1989). <i>Direct measurement of interstitial convection and diffusion of albumin…</i> PNAS., interstitial bulk flow.</li>
+    <li>Mestre, H., et al. (2018). <i>Flow of cerebrospinal fluid is driven by arterial pulsations and is reduced in hypertension.</i> Nature Communications., perivascular CSF.</li>
+    <li>Fischer, M., et al. (1996). <i>Flow velocity of single lymphatic capillaries in human skin.</i> American Journal of Physiology., initial lymphatics.</li>
+    <li>Scallan, J., et al. (2010). <i>Capillary Fluid Exchange: Regulation, Functions, and Pathology.</i> Morgan &amp; Claypool., Starling exchange.</li>
+  </ul>
+  <p>It is a conceptual and hypothesis-generating visualization, not a voxel-accurate anatomical dataset: velocities are literature-anchored at the normal state and scaled by the model’s hydration law, so cross-state values are predictions to be tested, not measurements.</p>
+
+  <h2>Archiving &amp; DOI</h2>
+  <p>This repository is wired for <b>GitHub → Zenodo</b> integration: cutting a GitHub release archives a snapshot and mints a citable DOI, using the metadata in <code>.zenodo.json</code>. Full step-by-step in <code>RELEASING.md</code>. A machine-readable citation lives in <code>CITATION.cff</code> (GitHub renders a “Cite this repository” button from it). The record is <b>published and open</b> at <a href="https://zenodo.org/records/21584351">zenodo.org/records/21584351</a>. From release <b>v1.1.0</b> it is fully <b>open</b>: <code>.zenodo.json</code> sets <code>access_right: open</code> with <code>license: cc-by-4.0</code>, matching <code>LICENSE</code> and the open-access terms of the companion journal. The repository stays private until the manuscript is submitted, then goes public and the release is cut, Zenodo archives private repositories too, so nothing is lost by waiting.</p>
+
+  <h2>Citation</h2>
+  <p>Iturralde, P. (2026). <i>The Human Interstitium, Interactive 3D Map</i> (Version 1.1.0) [Software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.21584351">https://doi.org/10.5281/zenodo.21584351</a></p>
+  <p>Companion to: Iturralde, P. (2026). <i>The cellular lining of a continuous fluid compartment: an interstitial cell atlas and the Interstitial Hydraulic Gating hypothesis.</i> Submitted to <i>Fluids and Barriers of the CNS</i>, current draft v12, 41 references.</p>
+
+  <h2>License</h2>
+  <p><b>Creative Commons Attribution 4.0 International (CC BY 4.0)</b> from the v1.1.0 release onward, share and adapt with attribution. See <code>LICENSE</code>. Copies distributed before that release remain under the earlier all-rights-reserved terms, retained in <code>LICENSE-previous-all-rights-reserved.txt</code>.</p>
+</doc-page>
+<script src="./doc-page.js"></script>
+</body>
+</html>

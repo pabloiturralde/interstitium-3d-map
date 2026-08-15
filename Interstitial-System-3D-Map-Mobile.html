@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#070b14" />
+<title>Interstitium, Mobile</title>
+<script>
+  /* mobile tuning, read by the shared model + stage before they build */
+  window.__MOBILE__ = true;
+  window.__NOHOVER__ = true;      // tap-select, no hover tooltip
+  window.__LOWDENSITY__ = true;   // thin the animated particle count
+  window.__MAXDPR__ = 1.5;        // cap renderer resolution for GPU headroom
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --panel: rgba(9,13,22,0.92);
+    --panel-brd: rgba(255,255,255,0.12);
+    --ink:#eef2f8; --ink-dim:rgba(238,242,248,0.62); --ink-faint:rgba(238,242,248,0.4);
+    --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans:"Space Grotesk", system-ui, -apple-system, sans-serif;
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sat: env(safe-area-inset-top, 0px);
+    --bar: 66px;
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; height:100%; background:#070b14; color:var(--ink);
+    font-family:var(--sans); overflow:hidden; overscroll-behavior:none; touch-action:none;
+    -webkit-user-select:none; user-select:none; }
+  a{ color:#6fd0e0; } a:hover{ color:#9fe4f0; }
+  three-d-stage:not(:defined){ visibility:hidden; }
+  #stage{ position:fixed; inset:0; }
+
+  /* ---- top bar ---- */
+  #top{ position:fixed; top:calc(var(--sat) + 9px); left:10px; right:10px; z-index:30;
+    display:flex; align-items:center; gap:9px; }
+  #title{ flex:1 1 auto; min-width:0; background:var(--panel); border:1px solid var(--panel-brd);
+    border-radius:13px; padding:10px 13px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0.5); }
+  #title h1{ margin:0; font-size:14px; font-weight:600; letter-spacing:-0.01em; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; }
+  #title .sub{ margin:3px 0 0; font-family:var(--mono); font-size:9.5px; color:var(--ink-dim);
+    letter-spacing:.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #title.exp .sub{ white-space:normal; line-height:1.5; }
+  /* hydration status pill */
+  #hyd{ flex:0 0 auto; display:flex; align-items:center; gap:7px; background:var(--panel);
+    border:1px solid var(--panel-brd); border-radius:13px; padding:10px 12px; font-family:var(--mono);
+    font-size:10px; color:var(--ink-dim); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 10px 30px rgba(0,0,0.5); transition:border-color .3s,box-shadow .3s; }
+  #hyd .hdot{ width:9px; height:9px; border-radius:50%; background:#5fd08a; box-shadow:0 0 8px currentColor; color:#5fd08a; }
+  #hyd.alert{ animation:pulse 1.1s ease-in-out infinite; }
+  #hyd.alert .hdot{ background:#ff5b5b; color:#ff5b5b; }
+  #hyd.alert.wet{ animation-name:pulsewet; }
+  #hyd.alert.wet .hdot{ background:#49b6ff; color:#49b6ff; }
+  @keyframes pulse{ 0%,100%{ border-color:rgba(255,90,90.35);} 50%{ border-color:rgba(255,90,90.95); box-shadow:0 0 16px rgba(255,80,80.5);} }
+  @keyframes pulsewet{ 0%,100%{ border-color:rgba(73,182,255.35);} 50%{ border-color:rgba(73,182,255.95); box-shadow:0 0 16px rgba(60,150,255.5);} }
+
+  .sec-h{ font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); margin:0 0 10px; }
+
+  /* ---- bottom sheet ---- */
+  #sheet{ position:fixed; left:0; right:0; bottom:calc(var(--bar) + var(--sab)); z-index:35;
+    background:var(--panel); border-top:1px solid var(--panel-brd); border-radius:20px 20px 0 0;
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 -14px 44px rgba(0,0,0.55);
+    padding:8px 14px 16px; max-height:56vh; overflow-y:auto; -webkit-overflow-scrolling:touch;
+    transform:translateY(120%); transition:transform .3s cubic-bezier(.2.9.3,1); }
+  #sheet.open{ transform:translateY(0); }
+  #sheet .grab{ width:38px; height:4px; border-radius:99px; background:rgba(255,255,255.2); margin:2px auto 12px; }
+  .mpanel{ display:none; } .mpanel.on{ display:block; }
+  .mgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .mgrid.c3{ grid-template-columns:repeat(3,1fr); }
+  .mgrid.c5{ grid-template-columns:repeat(5,1fr); }
+
+  /* big touch buttons, restyle the model's .pal / .btn / .sys */
+  .pal{ min-height:46px; padding:10px 8px; border:1px solid var(--panel-brd); border-radius:11px;
+    background:rgba(255,255,255.03); color:var(--ink-dim); font-family:var(--mono); font-size:11px;
+    letter-spacing:.06em; text-transform:uppercase; cursor:pointer; transition:all .14s; width:100%; }
+  .pal.on{ background:#eef2f8; color:#0b0f1a; border-color:#eef2f8; font-weight:600; }
+  .btn{ min-height:46px; width:100%; padding:11px; border:1px solid var(--panel-brd); border-radius:11px;
+    background:rgba(255,255,255.03); color:var(--ink); font-family:var(--sans); font-size:13.5px; cursor:pointer; }
+  .btn.on{ background:rgba(255,255,255.14); border-color:rgba(255,255,255.3); }
+  #sysList{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:10px; }
+  .sys{ display:flex; align-items:center; gap:9px; min-height:46px; padding:8px 11px; border:1px solid var(--panel-brd);
+    border-radius:11px; background:rgba(255,255,255.03); color:var(--ink); font-family:var(--sans);
+    font-size:13px; cursor:pointer; text-align:left; }
+  .sys .dot{ width:12px; height:12px; border-radius:4px; flex:0 0 auto; box-shadow:0 0 8px currentColor; }
+  .sys .nm{ flex:1 1 auto; } .sys .tick{ font-family:var(--mono); font-size:9.5px; color:var(--ink-faint); }
+  .sys.off{ opacity:.4; } .sys.off .dot{ box-shadow:none; }
+  .stack{ display:flex; flex-direction:column; gap:8px; }
+  #palLock{ display:none; }
+
+  /* warn panel inside hydration sheet */
+  #warn{ margin-top:12px; padding:11px 12px; background:rgba(255,255,255.03);
+    border:1px solid var(--panel-brd); border-radius:12px; font-family:var(--mono);
+    transition:border-color .3s,box-shadow .3s; }
+  #warn .wh{ font-size:11px; font-weight:600; color:var(--ink); margin-bottom:9px; }
+  #warn .wrow{ display:flex; align-items:center; gap:7px; font-size:11px; padding:4px 0; color:var(--ink-dim); }
+  #warn .wrow .wn{ flex:1; } #warn .wrow .wa{ width:13px; text-align:center; }
+  #warn .wrow .wp{ width:42px; text-align:right; font-variant-numeric:tabular-nums; }
+  #warn .wrow .wst{ width:78px; text-align:right; font-size:9px; text-transform:uppercase; letter-spacing:.04em; opacity:.7; }
+  #warn .wrow.ok .wa{ color:#5fd08a; }
+  #warn .wrow.dn{ color:#ffd3d3; } #warn .wrow.dn .wa,#warn .wrow.dn .wp{ color:#ff5b5b; }
+  #warn .wrow.up{ color:#cfe8ff; } #warn .wrow.up .wa,#warn .wrow.up .wp{ color:#49b6ff; }
+  #warn .wrow.risk{ color:#ffe08a; } #warn .wrow.risk .wa,#warn .wrow.risk .wp{ color:#ffb020; }
+  #warn .wbanner{ display:none; margin-top:9px; padding:8px 10px; border-radius:9px;
+    background:rgba(255,120,60.14); border:1px solid rgba(255,140,60.55); font-size:10.5px; line-height:1.45; color:#ffc38a; }
+  #warn .wf{ margin-top:9px; font-size:9px; color:var(--ink-faint); line-height:1.45; }
+  #warn.alert{ animation:warnblink 1.1s ease-in-out infinite; }
+  #warn.alert.wet{ animation-name:warnblinkwet; }
+  @keyframes warnblink{ 0%,100%{ border-color:rgba(255,90,90.4);} 50%{ border-color:rgba(255,90,90.95); box-shadow:0 0 18px rgba(255,80,80.4);} }
+  @keyframes warnblinkwet{ 0%,100%{ border-color:rgba(73,182,255.4);} 50%{ border-color:rgba(73,182,255.95); box-shadow:0 0 18px rgba(60,150,255.4);} }
+
+  /* legend */
+  #legList{ display:block; }
+  #legList .grp{ margin-bottom:13px; } #legList .grp:last-child{ margin-bottom:0; }
+  #legList .gh{ font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-dim); margin:0 0 7px; }
+  #legList .row{ display:flex; align-items:center; gap:10px; padding:4px 0; font-size:12.5px; color:var(--ink); }
+  #legList .row .sw{ width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
+  #legList .row .lb small{ display:block; font-family:var(--mono); font-size:9px; color:var(--ink-faint); }
+
+  /* ---- bottom tab bar ---- */
+  #tabs{ position:fixed; left:0; right:0; bottom:0; z-index:40; height:calc(var(--bar) + var(--sab));
+    padding-bottom:var(--sab); display:flex; background:rgba(7,11,20,0.94); border-top:1px solid var(--panel-brd);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+  .mtab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+    background:transparent; border:0; color:var(--ink-faint); font-family:var(--sans); font-size:10px; cursor:pointer;
+    position:relative; transition:color .14s; }
+  .mtab .ic{ font-size:17px; line-height:1; }
+  .mtab.on{ color:var(--ink); }
+  .mtab.on .ic{ filter:drop-shadow(0 0 7px rgba(120,200,255.5)); }
+  .mtab .badge{ position:absolute; top:9px; right:calc(50% - 20px); width:7px; height:7px; border-radius:50%;
+    background:#ff5b5b; box-shadow:0 0 7px #ff5b5b; display:none; }
+  .mtab.warn .badge{ display:block; }
+  .mtab.warn.wet .badge{ background:#49b6ff; box-shadow:0 0 7px #49b6ff; }
+
+  /* ---- tap-select info card ---- */
+  #tip{ display:none; }
+  #info{ position:fixed; left:10px; right:10px; bottom:calc(var(--bar) + var(--sab) + 12px); z-index:45;
+    padding:15px 16px; background:var(--panel); border:1px solid var(--panel-brd); border-radius:16px;
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); box-shadow:0 18px 50px rgba(0,0,0.6);
+    transform:translateY(140%); opacity:0; transition:transform .3s cubic-bezier(.2.9.3,1),opacity .2s; pointer-events:none; }
+  #info.show{ transform:translateY(0); opacity:1; pointer-events:auto; }
+  #info .ih{ display:flex; align-items:center; gap:11px; padding-right:24px; }
+  #info .ih .sw{ width:15px; height:15px; border-radius:5px; box-shadow:0 0 10px currentColor; flex:0 0 auto; }
+  #info .ih h3{ margin:0; font-size:15.5px; font-weight:600; line-height:1.2; }
+  #info .ih .sy{ margin-left:auto; font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); flex:0 0 auto; }
+  #info p{ margin:10px 0 0; font-size:13px; line-height:1.6; color:var(--ink-dim); }
+  #info .metric{ display:none; margin-top:11px; padding-top:11px; border-top:1px solid var(--panel-brd);
+    font-family:var(--mono); font-size:12px; color:#9fe6c0; line-height:1.5; }
+  #info .metric b{ font-size:13.5px; }
+  #info .metric.dn{ color:#ff8a8a; } #info .metric.up{ color:#7fc4ff; } #info .metric.ok{ color:#9fe6c0; }
+  #info .cite{ margin-top:9px; font-family:var(--mono); font-size:10px; color:var(--ink-faint); }
+  #info .x{ position:absolute; top:12px; right:14px; width:30px; height:30px; display:flex; align-items:center;
+    justify-content:center; cursor:pointer; color:var(--ink-faint); font-size:17px; }
+
+  /* first-run hint */
+  #hint{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:25; text-align:center;
+    font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:.03em; line-height:1.7;
+    pointer-events:none; transition:opacity .5s; }
+  #hint.gone{ opacity:0; }
+  #hint .big{ display:block; font-size:13px; color:var(--ink); margin-bottom:4px; }
+
+  /* caption card (scenario / figure caption) */
+  #caption{ position:fixed; left:10px; right:10px; top:calc(var(--sat) + 66px); z-index:38;
+    background:var(--panel); border:1px solid var(--panel-brd); border-left:4px solid #28c2b6; border-radius:14px;
+    padding:13px 15px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); box-shadow:0 14px 40px rgba(0,0,0.55);
+    opacity:0; transform:translateY(-12px); pointer-events:none; transition:opacity .3s, transform .3s; max-height:44vh; overflow-y:auto; }
+  #caption.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  #caption .ct{ font-size:14px; font-weight:600; padding-right:24px; letter-spacing:-0.01em; }
+  #caption .cb{ margin-top:7px; font-size:12px; line-height:1.55; color:var(--ink-dim); text-wrap:pretty; }
+  #caption .cr{ margin-top:8px; font-family:var(--mono); font-size:9.5px; color:var(--ink-faint); line-height:1.5; }
+  #caption .cx{ position:absolute; top:10px; right:12px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; color:var(--ink-faint); font-size:16px; }
+
+  /* scenarios / atlas / figure inside the Cases sheet */
+  .scn{ min-height:46px; padding:9px 8px; border:1px solid var(--panel-brd); border-radius:11px; background:rgba(255,255,255.03);
+    color:var(--ink-dim); font-family:var(--mono); font-size:10px; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; width:100%; }
+  .scn.on{ background:#eef2f8; color:#0b0f1a; border-color:#eef2f8; font-weight:600; }
+  #atlasToggle{ min-height:46px; width:100%; padding:11px; border:1px solid var(--panel-brd); border-radius:11px;
+    background:rgba(255,255,255.03); color:var(--ink); font-family:var(--sans); font-size:13.5px; cursor:pointer; margin-bottom:8px; }
+  #atlasToggle.on{ background:rgba(40,194,182.18); border-color:rgba(40,194,182.5); }
+  #popList{ display:none; }
+  #atlas.atlas-on #popList{ display:block; }
+  .pop{ display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:8px; border:1px solid var(--panel-brd);
+    border-radius:11px; background:rgba(255,255,255.03); color:var(--ink); font-family:var(--sans); font-size:12.5px; text-align:left; cursor:pointer; margin:5px 0; }
+  .pop .pdot{ width:22px; height:22px; flex:0 0 auto; border-radius:50%; color:#fff; font-family:var(--mono); font-size:11px; font-weight:600;
+    display:flex; align-items:center; justify-content:center; }
+  .pop .plb{ flex:1 1 auto; line-height:1.25; }
+  .pop .plb em{ font-style:normal; font-family:var(--mono); font-size:8px; letter-spacing:.06em; text-transform:uppercase; color:#ffcf8a; }
+  .pop .plb small{ display:block; font-family:var(--mono); font-size:9px; color:var(--ink-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:72vw; }
+  #info .markers{ display:none; margin-top:11px; padding-top:11px; border-top:1px solid var(--panel-brd);
+    font-family:var(--mono); font-size:11px; line-height:1.6; color:var(--ink-dim); }
+  #info .markers b{ color:#9fe6c0; }
+  body.figmode #top, body.figmode #sheet, body.figmode #tabs, body.figmode #info, body.figmode #hint{ display:none !important; }
+  body.figmode #caption.show{ display:block; }
+
+  #loading{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:60;
+    font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:#8a93a6; background:#070b14; transition:opacity .5s; }
+  #loading.gone{ opacity:0; pointer-events:none; }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#070b14"/>
+      <g transform="translate(50 50)" stroke-linecap="round">
+        <path d="M-28-14 L-6-30 M-6-30 L20-18 M20-18 L30 6 M-28-14 L-14 12 M-14 12 L12 26 M12 26 L30 6 M-14 12 L-6-30" stroke="#f2a65a" stroke-width="3.5" fill="none"/>
+        <path d="M-34 4 Q0-6 34 2" stroke="#ff5b5b" stroke-width="3" fill="none"/>
+        <path d="M-30 20 Q4 12 32 22" stroke="#2fe0a0" stroke-width="3" fill="none"/>
+        <path d="M-30-26 Q2-20 30-28" stroke="#ffe14d" stroke-width="2.5" fill="none"/>
+        <circle cx="-6" cy="-30" r="4" fill="#ff6fc0"/>
+        <circle cx="20" cy="-18" r="3.4" fill="#c78fff"/>
+        <circle cx="12" cy="26" r="3.4" fill="#ff9d4d"/>
+        <circle cx="30" cy="6" r="3" fill="#38e2d6"/>
+      </g>
+    </svg>
+  </template>
+
+  <three-d-stage id="stage" name="interstitial-system" background="#070b14"></three-d-stage>
+
+  <div id="hint"><span class="big">Drag to orbit · pinch to zoom</span>Tap any structure to identify it</div>
+
+  <div id="top">
+    <div id="title"><h1>The Human Interstitium</h1><p class="sub">Tap to read · confocal view</p></div>
+    <div id="hyd"><span class="hdot"></span><span id="hydTxt">Normal</span></div>
+  </div>
+
+  <!-- hidden palette lock: model wires these; init forces confocal -->
+  <div id="palLock">
+    <button class="pal" data-pal="bright">Confocal</button>
+    <button class="pal" data-pal="muted">Textbook</button>
+    <button class="pal" data-pal="neon">Neon</button>
+  </div>
+
+  <!-- tap-select info card -->
+  <div id="info">
+    <span class="x" id="infoX">✕</span>
+    <div class="ih"><span class="sw"></span><h3></h3><span class="sy"></span></div>
+    <p></p>
+    <div class="markers"></div>
+    <div class="metric"></div>
+    <div class="cite"></div>
+  </div>
+
+  <!-- scenario / figure caption -->
+  <div id="caption">
+    <span class="cx">✕</span>
+    <div class="ct"></div>
+    <div class="cb"></div>
+    <div class="cr"></div>
+  </div>
+  <div id="tip"><div class="ts"></div><div class="tt"></div><div class="tr"></div></div>
+
+  <!-- bottom sheet -->
+  <div id="sheet">
+    <div class="grab"></div>
+
+    <div class="mpanel" data-p="systems">
+      <p class="sec-h">Systems, tap to toggle</p>
+      <div id="sysList"></div>
+      <button class="btn" id="allBtn">Show all systems</button>
+    </div>
+
+    <div class="mpanel" data-p="scale">
+      <p class="sec-h">Scale, zoom between</p>
+      <div class="mgrid c3">
+        <button class="pal on" data-view="both">Overview</button>
+        <button class="pal" data-view="body">Body</button>
+        <button class="pal" data-view="micro">Micro</button>
+      </div>
+      <div style="height:8px"></div>
+      <button class="btn" id="resetBtn">Reset view</button>
+    </div>
+
+    <div class="mpanel" data-p="hydration">
+      <p class="sec-h">Hydration, affects every system</p>
+      <div class="mgrid">
+        <button class="pal" data-hy="0">Dehydrated</button>
+        <button class="pal" data-hy="0.3">Low</button>
+        <button class="pal on" data-hy="0.55">Normal</button>
+        <button class="pal" data-hy="1">High</button>
+      </div>
+      <div id="warn">
+        <div class="wh">Homeostasis, flow nominal</div>
+        <div class="wbody"></div>
+        <div class="wbanner"></div>
+        <div class="wf">Flow vs. normal hydration · tap a duct or molecule for its live rate</div>
+      </div>
+    </div>
+
+    <div class="mpanel" data-p="time">
+      <p class="sec-h">Time speed</p>
+      <div class="mgrid c5">
+        <button class="pal on" data-ts="1">1×</button>
+        <button class="pal" data-ts="2">2×</button>
+        <button class="pal" data-ts="10">10×</button>
+        <button class="pal" data-ts="100">100×</button>
+        <button class="pal" data-ts="1000">1000×</button>
+      </div>
+      <div style="height:12px"></div>
+      <p class="sec-h">Animation</p>
+      <button class="btn on" id="flowBtn" aria-pressed="true">◍&nbsp;&nbsp;Flow, on</button>
+    </div>
+
+    <div class="mpanel" data-p="cases">
+      <p class="sec-h">Scenarios, stage a condition</p>
+      <div class="mgrid">
+        <button class="scn" data-scn="homeostasis">Homeostasis</button>
+        <button class="scn" data-scn="perineural">Perineural collapse</button>
+        <button class="scn" data-scn="glymphatic">Glymphatic failure</button>
+        <button class="scn" data-scn="ischemic">Ischemic / CADASIL</button>
+        <button class="scn" data-scn="edema">Edema</button>
+        <button class="scn" data-scn="continuity">Continuity</button>
+      </div>
+      <div style="height:14px"></div>
+      <p class="sec-h">Cell atlas, 13 populations</p>
+      <div id="atlas">
+        <button id="atlasToggle" aria-pressed="false">◌&nbsp;&nbsp;Cell atlas, off</button>
+        <div id="popList"></div>
+      </div>
+      <div style="height:14px"></div>
+      <p class="sec-h">Figure export</p>
+      <div class="stack">
+        <button class="btn" id="figMode">◲&nbsp;&nbsp;Figure mode</button>
+        <div class="mgrid">
+          <button class="btn" id="figSnap1">PNG · 1-col</button>
+          <button class="btn" id="figSnap2">PNG · 2-col</button>
+        </div>
+        <button class="btn" id="figMatrix">Condition matrix (×4)</button>
+      </div>
+    </div>
+
+    <div class="mpanel" data-p="legend">
+      <p class="sec-h">Legend</p>
+      <div id="legList"></div>
+    </div>
+  </div>
+
+  <!-- tab bar -->
+  <nav id="tabs">
+    <button class="mtab" data-t="systems"><span class="ic">◉</span>Systems</button>
+    <button class="mtab" data-t="scale"><span class="ic">⤢</span>Scale</button>
+    <button class="mtab" data-t="hydration"><span class="ic">💧</span><span class="badge"></span>Hydration</button>
+    <button class="mtab" data-t="time"><span class="ic">◍</span>Time</button>
+    <button class="mtab" data-t="cases"><span class="ic">◎</span>Cases</button>
+    <button class="mtab" data-t="legend"><span class="ic">☰</span>Legend</button>
+  </nav>
+
+  <div id="loading">building interstitial network…</div>
+
+  <script src="three-d-stage.js"></script>
+  <script type="module" src="interstitium-model.js"></script>
+  <script type="module">
+    /* ---- mobile shell: runs after the model module finishes wiring ---- */
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+
+    // palette is locked to confocal by the model (window.__MOBILE__); no click needed here
+    const title = $('#title');
+    title.addEventListener('click', () => title.classList.toggle('exp'));
+
+    // bottom-sheet tab management
+    const sheet = $('#sheet');
+    let active = null;
+    function openTab(name){
+      if(active === name){ closeSheet(); return; }
+      active = name;
+      $$('.mpanel').forEach(p => p.classList.toggle('on', p.dataset.p === name));
+      $$('.mtab').forEach(t => t.classList.toggle('on', t.dataset.t === name));
+      sheet.classList.add('open');
+      dismissHint();
+    }
+    function closeSheet(){
+      active = null; sheet.classList.remove('open');
+      $$('.mtab').forEach(t => t.classList.remove('on'));
+    }
+    $$('.mtab').forEach(t => t.addEventListener('click', () => openTab(t.dataset.t)));
+    $('.grab').addEventListener('click', closeSheet);
+    // staging a scenario should reveal the scene + caption, close the sheet
+    $$('.scn').forEach(b => b.addEventListener('click', closeSheet));
+
+    // tapping the 3D stage (empty space) closes the sheet; tapping a structure
+    // opens the info card via the model's own handler
+    $('#stage').addEventListener('pointerdown', () => { if(active) closeSheet(); dismissHint(); });
+
+    // first-run hint auto-dismiss
+    let hintTimer = setTimeout(dismissHint, 5200);
+    function dismissHint(){ clearTimeout(hintTimer); $('#hint').classList.add('gone'); }
+
+    // mirror the warning panel into the top pill + Hydration tab badge
+    const warn = $('#warn'), hyd = $('#hyd'), hydTxt = $('#hydTxt');
+    const hydTab = $('.mtab[data-t="hydration"]');
+    function syncWarn(){
+      const alert = warn.classList.contains('alert');
+      const wet = warn.classList.contains('wet');
+      hyd.classList.toggle('alert', alert); hyd.classList.toggle('wet', wet);
+      hydTab.classList.toggle('warn', alert); hydTab.classList.toggle('wet', wet);
+      const hdr = warn.querySelector('.wh').textContent;
+      hydTxt.textContent = alert ? (wet ? 'Edema' : 'Constricted') : 'Normal';
+      hyd.title = hdr;
+    }
+    new MutationObserver(syncWarn).observe(warn, { attributes:true, attributeFilter:['class'], subtree:false });
+    new MutationObserver(syncWarn).observe(warn.querySelector('.wh'), { childList:true, characterData:true, subtree:true });
+    syncWarn();
+
+    // when a hydration button is tapped, keep the sheet open so the user sees
+    // the warning table update; nudge the info card out of the way
+    $$('.pal[data-hy]').forEach(b => b.addEventListener('click', () => $('#info').classList.remove('show')));
+  </script>
+</body>
+</html>

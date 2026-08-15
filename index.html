@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Human Interstitium, 3D Map</title>
+<style>
+  html,body{ margin:0; height:100%; background:#070b14; color:#eef2f8;
+    font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .w{ position:fixed; inset:0; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:16px; text-align:center; padding:24px; }
+  .t{ font-size:15px; letter-spacing:.02em; }
+  .s{ font-size:12px; color:#9fb3c8; line-height:1.7; max-width:34em; }
+  a{ color:#6fd0e0; }
+  .btns{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:4px; }
+  .btns a{ border:1px solid #24405c; border-radius:8px; padding:10px 16px;
+    text-decoration:none; font-size:12px; min-height:44px; display:flex; align-items:center; }
+</style>
+</head>
+<body>
+  <div class="w">
+    <div class="t">Loading the interstitial system map…</div>
+    <div class="s">If nothing happens, choose a build:</div>
+    <div class="btns">
+      <a href="Interstitial-System-3D-Map.html">Desktop</a>
+      <a href="Interstitial-System-3D-Map-Mobile.html">Mobile</a>
+      <a href="Interstitial-System-3D-Map_desktop_v1.1.0.html">Desktop, single file</a>
+      <a href="Interstitial-System-3D-Map_mobile_v1.1.0.html">Mobile, single file</a>
+    </div>
+  </div>
+<script>
+  // Route by device so phone and tablet users land on the touch build.
+  var mobile = /Android|iPhone|iPod/i.test(navigator.userAgent)
+    || (/iPad|Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1)
+    || Math.min(screen.width, screen.height) < 820;
+  location.replace(mobile ? 'Interstitial-System-3D-Map-Mobile.html'
+                          : 'Interstitial-System-3D-Map.html');
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=Interstitial-System-3D-Map.html" /></noscript>
+</body>
+</html>
