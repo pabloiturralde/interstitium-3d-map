@@ -1,8 +1,8 @@
 # The Human Interstitium, Interactive 3D Map
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21584351.svg)](https://doi.org/10.5281/zenodo.21584351)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21584350.svg)](https://doi.org/10.5281/zenodo.21584350)
 
-**Published record:** https://zenodo.org/records/21584351
+**Published record:** https://zenodo.org/records/21584350
 
 An interactive, literature-grounded 3D visualization of the human interstitium
 and the five fluid systems it physically connects: the **circulatory**
@@ -121,18 +121,18 @@ release archives a snapshot and mints a citable DOI, using the metadata in
 A machine-readable citation lives in [`CITATION.cff`](./CITATION.cff) (GitHub
 renders a "Cite this repository" button from it).
 
-The record is **published and open** at https://zenodo.org/records/21584351. From release **v1.1.0** it is fully **open**: `.zenodo.json` sets
+The record is **published and open** at https://zenodo.org/records/21584350. From release **v1.1.0** it is fully **open**: `.zenodo.json` sets
 `access_right: open` with `license: cc-by-4.0`, matching [`LICENSE`](./LICENSE)
 and the open-access terms of the companion journal. The repository stays private
 until the manuscript is submitted, then goes public and the release is cut, Zenodo archives private repositories too, so nothing is lost by waiting.
 
 ## Citation
 
-> Iturralde, P. (2026). *The Human Interstitium, Interactive 3D Map* (Version 1.1.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21584351
+> Iturralde, P. (2026). *The Human Interstitium, Interactive 3D Map* (Version 1.1.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21584350
 >
 > Companion to: Iturralde, P. (2026). *The cellular lining of a continuous fluid compartment: an interstitial cell atlas and the Interstitial Hydraulic Gating hypothesis.* Submitted to *Fluids and Barriers of the CNS*., current draft v12, 41 references.
 
-**DOI:** [`10.5281/zenodo.21584351`](https://doi.org/10.5281/zenodo.21584351)
+**DOI:** [`10.5281/zenodo.21584350`](https://doi.org/10.5281/zenodo.21584350)
 
 ## License
 
