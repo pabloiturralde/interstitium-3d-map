@@ -97,8 +97,13 @@
   #src summary::-webkit-details-marker{ display:none; }
   #src summary::after{ content:"+"; float:right; color:var(--ink-faint); }
   #src[open] summary::after{ content:"-"; }
-  #src ol{ margin:10px 0 0; padding-left:16px; }
-  #src li{ font-family:var(--mono); font-size:9.5px; line-height:1.5; color:var(--ink-dim); margin-bottom:7px; }
+  #src ul{ margin:6px 0 0; padding-left:0; list-style:none; }
+  #src .gh{ margin:12px 0 0; font-family:var(--mono); font-size:8.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-faint); }
+  #src .gh:first-of-type{ margin-top:10px; }
+  #src li .t{ color:var(--ink); }
+  #src li{ font-family:var(--sans); font-size:10px; line-height:1.5; color:var(--ink-dim);
+    margin-bottom:8px; text-indent:-9px; padding-left:9px; text-wrap:pretty; }
   #src .sf{ margin:9px 0 0; font-family:var(--mono); font-size:8.5px; line-height:1.5;
     color:var(--ink-faint); }
 
@@ -397,29 +402,37 @@
 
   <details id="src" class="panel">
     <summary>Literature basis</summary>
-    <ol>
-      <li><b>[1]</b> Buechler, M.B. et al. (2021) Cross-tissue organization of the fibroblast lineage. <em>Nature</em> 593, 575-579</li>
-      <li><b>[3]</b> Popescu, L.M. &amp; Faussone-Pellegrini, M.S. (2010) Telocytes: from interstitial cells of Cajal to telocytes. <em>J. Cell. Mol. Med.</em> 14, 729-740</li>
-      <li><b>[4]</b> Huizinga, J.D. et al. (1995) W/kit gene required for interstitial cells of Cajal and for intestinal pacemaker activity. <em>Nature</em> 373, 347-349</li>
-      <li><b>[5]</b> Stecco, C. et al. (2018) The fasciacytes: a new cell devoted to fascial gliding regulation. <em>Clin. Anat.</em> 31, 667-676</li>
-      <li><b>[7]</b> Vanlandewijck, M. et al. (2018) A molecular atlas of cell types and zonation in the brain vasculature. <em>Nature</em> 554, 475-480</li>
-      <li><b>[8]</b> Rodda, L.B. et al. (2018) Single-cell RNA sequencing of lymph node stromal cells reveals niche-associated heterogeneity. <em>Immunity</em> 48, 1014-1028</li>
-      <li><b>[10]</b> Dominici, M. et al. (2006) Minimal criteria for defining multipotent mesenchymal stromal cells. <em>Cytotherapy</em> 8, 315-317</li>
-      <li><b>[11]</b> Chakarov, S. et al. (2019) Two distinct interstitial macrophage populations coexist across tissues in specific subtissular niches. <em>Science</em> 363, eaau0964</li>
-      <li><b>[13]</b> Wigle, J.T. &amp; Oliver, G. (1999) Prox1 function is required for the development of the murine lymphatic system. <em>Cell</em> 98, 769-778</li>
-      <li><b>[14]</b> Iliff, J.J. et al. (2012) A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes, including amyloid β. <em>Sci. Transl. Med.</em> 4, 147ra111</li>
-      <li><b>[15]</b> Louveau, A. et al. (2015) Structural and functional features of central nervous system lymphatic vessels. <em>Nature</em> 523, 337-341</li>
-      <li><b>[17]</b> Møllgård, K. et al. (2023) A mesothelium divides the subarachnoid space into functional compartments. <em>Science</em> 379, 84-88</li>
-      <li><b>[20]</b> Mukherjee, S. &amp; Tithof, J. (2022) Model of glymphatic clearance of aggregating proteins from the brain interstitium. <em>Phys. Rev. E</em> 105, 024405</li>
-      <li><b>[21]</b> DeSisto, J. et al. (2020) Single-cell transcriptomic analyses of the developing meninges reveal meningeal fibroblast diversity and function. <em>Dev. Cell</em> 54, 43-59</li>
-      <li><b>[22]</b> Skelly, D.A. et al. (2018) Single-cell transcriptional profiling reveals cellular diversity and intercommunication in the mouse heart. <em>Cell Rep.</em> 22, 600-610</li>
-      <li><b>[31]</b> Rinkevich, Y. et al. (2015) Identification and isolation of a dermal lineage with intrinsic fibrogenic potential. <em>Science</em> 348, aaa2151</li>
-      <li><b>[32]</b> Benias, P.C. et al. (2018) Structure and distribution of an unrecognized interstitium in human tissues. <em>Sci. Rep.</em> 8, 4947</li>
-      <li><b>[33]</b> Cenaj, O. et al. (2021) Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans. <em>Commun. Biol.</em> 4, 436</li>
-      <li>Baluk, P. et al. (2007) Functionally specialized junctions between endothelial cells of lymphatic vessels. <em>J. Exp. Med.</em> 204, 2349-2362</li>
-    </ol>
-    <p class="sf">Bracketed numbers are reference indices in the companion review; the final
-      entry is cited in the model but not numbered there.</p>
+    <p class="gh">Structural &amp; cellular basis</p>
+    <ul>
+      <li>Baluk, P. et al. (2007). <span class="t">Functionally specialized junctions between endothelial cells of lymphatic vessels.</span> <em>J. Exp. Med.</em> 204, 2349-2362</li>
+      <li>Benias, P.C. et al. (2018). <span class="t">Structure and distribution of an unrecognized interstitium in human tissues.</span> <em>Sci. Rep.</em> 8, 4947</li>
+      <li>Buechler, M.B. et al. (2021). <span class="t">Cross-tissue organization of the fibroblast lineage.</span> <em>Nature</em> 593, 575-579</li>
+      <li>Cenaj, O. et al. (2021). <span class="t">Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans.</span> <em>Commun. Biol.</em> 4, 436</li>
+      <li>Chakarov, S. et al. (2019). <span class="t">Two distinct interstitial macrophage populations coexist across tissues in specific subtissular niches.</span> <em>Science</em> 363, eaau0964</li>
+      <li>DeSisto, J. et al. (2020). <span class="t">Single-cell transcriptomic analyses of the developing meninges reveal meningeal fibroblast diversity and function.</span> <em>Dev. Cell</em> 54, 43-59</li>
+      <li>Dominici, M. et al. (2006). <span class="t">Minimal criteria for defining multipotent mesenchymal stromal cells.</span> <em>Cytotherapy</em> 8, 315-317</li>
+      <li>Huizinga, J.D. et al. (1995). <span class="t">W/kit gene required for interstitial cells of Cajal and for intestinal pacemaker activity.</span> <em>Nature</em> 373, 347-349</li>
+      <li>Iliff, J.J. et al. (2012). <span class="t">A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes, including amyloid β.</span> <em>Sci. Transl. Med.</em> 4, 147ra111</li>
+      <li>Louveau, A. et al. (2015). <span class="t">Structural and functional features of central nervous system lymphatic vessels.</span> <em>Nature</em> 523, 337-341</li>
+      <li>Møllgård, K. et al. (2023). <span class="t">A mesothelium divides the subarachnoid space into functional compartments.</span> <em>Science</em> 379, 84-88</li>
+      <li>Mukherjee, S. &amp; Tithof, J. (2022). <span class="t">Model of glymphatic clearance of aggregating proteins from the brain interstitium.</span> <em>Phys. Rev. E</em> 105, 024405</li>
+      <li>Popescu, L.M. &amp; Faussone-Pellegrini, M.S. (2010). <span class="t">Telocytes: from interstitial cells of Cajal to telocytes.</span> <em>J. Cell. Mol. Med.</em> 14, 729-740</li>
+      <li>Rinkevich, Y. et al. (2015). <span class="t">Identification and isolation of a dermal lineage with intrinsic fibrogenic potential.</span> <em>Science</em> 348, aaa2151</li>
+      <li>Rodda, L.B. et al. (2018). <span class="t">Single-cell RNA sequencing of lymph node stromal cells reveals niche-associated heterogeneity.</span> <em>Immunity</em> 48, 1014-1028</li>
+      <li>Skelly, D.A. et al. (2018). <span class="t">Single-cell transcriptional profiling reveals cellular diversity and intercommunication in the mouse heart.</span> <em>Cell Rep.</em> 22, 600-610</li>
+      <li>Stecco, C. et al. (2018). <span class="t">The fasciacytes: a new cell devoted to fascial gliding regulation.</span> <em>Clin. Anat.</em> 31, 667-676</li>
+      <li>Vanlandewijck, M. et al. (2018). <span class="t">A molecular atlas of cell types and zonation in the brain vasculature.</span> <em>Nature</em> 554, 475-480</li>
+      <li>Wigle, J.T. &amp; Oliver, G. (1999). <span class="t">Prox1 function is required for the development of the murine lymphatic system.</span> <em>Cell</em> 98, 769-778</li>
+    </ul>
+    <p class="gh">Baseline flow velocities</p>
+    <ul>
+      <li>Chary, S.R. &amp; Jain, R.K. (1989). <span class="t">Direct measurement of interstitial convection and diffusion of albumin in normal and neoplastic tissues by fluorescence photobleaching.</span> <em>Proc. Natl. Acad. Sci. USA</em> 86, 5385-5389 — interstitial bulk flow.</li>
+      <li>Fischer, M. et al. (1996). <span class="t">Flow velocity of single lymphatic capillaries in human skin.</span> <em>Am. J. Physiol.</em> 270, H358-H363 — initial lymphatics.</li>
+      <li>Mestre, H. et al. (2018). <span class="t">Flow of cerebrospinal fluid is driven by arterial pulsations and is reduced in hypertension.</span> <em>Nat. Commun.</em> 9, 4878 — perivascular CSF.</li>
+      <li>Scallan, J. et al. (2010). <span class="t">Capillary Fluid Exchange: Regulation, Functions, and Pathology.</span> <em>Morgan &amp; Claypool Life Sciences</em> — Starling exchange.</li>
+    </ul>
+    <p class="sf">The velocities are literature-anchored at the normal hydration state and
+      scaled by the model's hydration logic; they are not independent measurements.</p>
   </details>
 
   <div id="tip"><div class="ts"></div><div class="tt"></div><div class="tr"></div></div>

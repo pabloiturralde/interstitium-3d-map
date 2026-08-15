@@ -235,7 +235,7 @@ const HALF=2.2, TOP=3.4;
 {
   const g=new T.SphereGeometry(1,44,32); g.scale(HALF*1.03, TOP*0.5, HALF*1.03);
   const m=new T.Mesh(g,MAT.fluid); m.position.y=TOP*0.5;
-  add('core',m,'fluid','Interstitial fluid','A continuous, fluid-filled pre-lymphatic compartment, not empty stroma. Benias et al. showed these macroscopically visible spaces are collapsed and flattened by the dehydration of conventional histology, which is why they went long unrecognized.','Benias et al. 2018, Sci. Rep. [32]');
+  add('core',m,'fluid','Interstitial fluid','A continuous, fluid-filled pre-lymphatic compartment, not empty stroma. Benias et al. showed these macroscopically visible spaces are collapsed and flattened by the dehydration of conventional histology, which is why they went long unrecognized.','Benias et al. 2018, Sci. Rep.');
 }
 // collagen-I bundle lattice
 const nodes=[];
@@ -245,10 +245,10 @@ for(let i=0;i<nodes.length;i++){
   for(let j=0;j<nodes.length;j++){ if(i===j)continue; const d=nodes[i].distanceTo(nodes[j]);
     if(d>0.8&&d<bd){bd=d;best=j;} }
   if(best>=0) add('core',new T.Mesh(wavy(nodes[i],nodes[best],0.05+rng()*0.03,0.45,7),MAT.collagen),
-    'collagen','Collagen I bundle','Thick, irregular type-I collagen bundles form the strong, tension-bearing lattice that props the fluid spaces open, on EM the dense fibrillar struts lining each space.','Benias et al. 2018 [32]');
+    'collagen','Collagen I bundle','Thick, irregular type-I collagen bundles form the strong, tension-bearing lattice that props the fluid spaces open, on EM the dense fibrillar struts lining each space.','Benias et al. 2018');
   const k=(i+9)%nodes.length; if(nodes[i].distanceTo(nodes[k])<3.6)
     add('core',new T.Mesh(wavy(nodes[i],nodes[k],0.045,0.55,7),MAT.collagen),
-    'collagen','Collagen I bundle','Thick, irregular type-I collagen bundles form the tension-bearing lattice propping the spaces open.','Benias et al. 2018 [32]');
+    'collagen','Collagen I bundle','Thick, irregular type-I collagen bundles form the tension-bearing lattice propping the spaces open.','Benias et al. 2018');
 }
 // collagen-III reticular fibres, fine mesh woven between bundles
 for(let i=0;i<22;i++){
@@ -262,14 +262,14 @@ for(let i=0;i<16;i++){
   const a=nodes[(i*3)%nodes.length], b=nodes[(i*3+5)%nodes.length];
   if(a.distanceTo(b)>3.6) continue;
   add('core',new T.Mesh(wavy(a,b,0.02,0.85,8,8),MAT.elastin),
-    'elastin','Elastin fiber','Fine elastic fibres let the distended space recoil; sparser and thinner than the collagen struts.','Benias et al. 2018 [32]');
+    'elastin','Elastin fiber','Fine elastic fibres let the distended space recoil; sparser and thinner than the collagen struts.','Benias et al. 2018');
 }
 // fibroblasts (CD34+) lining bundles, with processes
 for(let i=0;i<12;i++){
   const n=nodes[(i*2)%nodes.length];
   const b=new T.Mesh(new T.SphereGeometry(0.12,20,16),MAT.fibroblast);
   b.scale.set(1.7,0.45,1.1); b.position.copy(n); b.rotation.set(rng()*3,rng()*3,rng()*3);
-  add('core',b,'fibroblast','Fibroblast (CD34+)','Flat, stellate CD34+ / vimentin+ cells line the bundles rather than forming a sealed epithelium, a key Benias finding: the spaces are NOT lined by continuous endothelium.','Benias et al. 2018 [32]');
+  add('core',b,'fibroblast','Fibroblast (CD34+)','Flat, stellate CD34+ / vimentin+ cells line the bundles rather than forming a sealed epithelium, a key Benias finding: the spaces are NOT lined by continuous endothelium.','Benias et al. 2018');
   for(let p=0;p<3;p++){ const out=n.clone().add(rv(1).normalize().multiplyScalar(0.3+rng()*0.2));
     add('core',new T.Mesh(wavy(n,out,0.012,0.12,4,6),MAT.fibroblast),'fibroblast','Fibroblast process','Long cytoplasmic processes extend along the collagen struts.',''); }
 }
@@ -279,7 +279,7 @@ for(let i=0;i<6;i++){
   m.position.set((rng()-0.5)*3,0.8+rng()*1.8,(rng()-0.5)*3);
   const p=m.geometry.attributes.position; for(let v=0;v<p.count;v++){ const f=1+(rng()-0.5)*0.28;
     p.setXYZ(v,p.getX(v)*f,p.getY(v)*f,p.getZ(v)*f);} p.needsUpdate=true; m.geometry.computeVertexNormals();
-  add('core',m,'macrophage','Macrophage','Resident phagocytes patrol the fluid, clearing debris and antigen. Their access to this fluid highway may abet tumour-cell spread, a clinical implication Benias et al. raised.','Benias et al. 2018 [32]');
+  add('core',m,'macrophage','Macrophage','Resident phagocytes patrol the fluid, clearing debris and antigen. Their access to this fluid highway may abet tumour-cell spread, a clinical implication Benias et al. raised.','Benias et al. 2018');
 }
 // mast cells, granulated, near vessels
 for(let i=0;i<4;i++){
@@ -326,7 +326,7 @@ for(let i=0;i<9;i++){                                  // aggrecan brushes on a 
 {
   const c0=V(-1.4,0.9,1.3);
   for(let i=0;i<26;i++){ const a=c0.clone().add(rv(1.7)), b=a.clone().add(rv(1.2));
-    add('core',new T.Mesh(wavy(a,b,0.018+rng()*0.02,0.5,6,6),MAT.collagen3),'collagen3','Collagen III (dense zone)','Interstitial density varies regionally, here reticular fibres condense into a denser fascial zone, while elsewhere the lattice stays looser and more fluid-rich.','Benias et al. 2018 [32]'); }
+    add('core',new T.Mesh(wavy(a,b,0.018+rng()*0.02,0.5,6,6),MAT.collagen3),'collagen3','Collagen III (dense zone)','Interstitial density varies regionally, here reticular fibres condense into a denser fascial zone, while elsewhere the lattice stays looser and more fluid-rich.','Benias et al. 2018'); }
   for(let i=0;i<30;i++){ const m=new T.Mesh(new T.SphereGeometry(0.03+rng()*0.03,8,6),MAT.gag);
     m.position.copy(c0.clone().add(rv(2.3))); add('core',m,'gag','Hyaluronan (dense zone)','Concentrated hydrated gel within the denser matrix region.',''); }
 }
@@ -346,9 +346,9 @@ for(let i=0;i<9;i++){                                  // aggrecan brushes on a 
     const g=new T.CylinderGeometry(0.1,0.1,L,14,1,true);
     const m=new T.Mesh(g,MAT.channel); m.position.copy(M);
     m.quaternion.setFromUnitVectors(V(0,1,0),dir);
-    add('core',m,'channel','Pre-lymphatic channel','A low-resistance conduit through the gel; bulk interstitial fluid percolates along it toward the initial lymphatics. It widens when the matrix is hydrated and collapses when water is withdrawn.','Benias et al. 2018 [32]');
+    add('core',m,'channel','Pre-lymphatic channel','A low-resistance conduit through the gel; bulk interstitial fluid percolates along it toward the initial lymphatics. It widens when the matrix is hydrated and collapses when water is withdrawn.','Benias et al. 2018');
     channels.push(m);
-    makeFlow('core','micro',[A, M, B],{count:5,r:0.026,mat:'fluid',name:'Interstitial flow',detail:'Fluid percolating through a pre-lymphatic channel, slow and sparse when dehydrated, faster and fuller when the tissue is hydrated.',speed:0.05,hydroSens:1.6,jitter:true,cite:'Benias et al. 2018 [32]'});
+    makeFlow('core','micro',[A, M, B],{count:5,r:0.026,mat:'fluid',name:'Interstitial flow',detail:'Fluid percolating through a pre-lymphatic channel, slow and sparse when dehydrated, faster and fuller when the tissue is hydrated.',speed:0.05,hydroSens:1.6,jitter:true,cite:'Benias et al. 2018'});
   });
   registerHydro(h=>{ const w=0.32+h*1.35; channels.forEach(m=>m.scale.set(w,1,w)); });   // channel width
   const Cc=V(0,1.85,0);                                                               // matrix openness / regional density
@@ -459,13 +459,13 @@ for(let i=0;i<9;i++){                                  // aggrecan brushes on a 
  * ================================================================== */
 {
   const ap=[V(-1.4,-0.2,-1.0),V(-1.3,1.0,-1.05),V(-1.45,2.2,-0.95),V(-1.35,TOP+0.2,-1.0)];
-  add('glymphatic',new T.Mesh(tubeAlong(ap,0.12),MAT.arteriole),'arteriole','Penetrating arteriole','Arteriole pulsation drives CSF inward along the peri-vascular space, the mechanical pump of the glymphatic system.','Iliff et al. 2012 [14]');
-  add('glymphatic',new T.Mesh(tubeAlong(ap,0.22),MAT.glymph),'glymph','Peri-arterial (AQP4) space','The para-arterial space bounded by astrocyte end-feet. CSF enters here and exchanges with brain interstitial fluid, flushing solutes toward para-venous efflux.','Iliff et al. 2012 [14]');
+  add('glymphatic',new T.Mesh(tubeAlong(ap,0.12),MAT.arteriole),'arteriole','Penetrating arteriole','Arteriole pulsation drives CSF inward along the peri-vascular space, the mechanical pump of the glymphatic system.','Iliff et al. 2012');
+  add('glymphatic',new T.Mesh(tubeAlong(ap,0.22),MAT.glymph),'glymph','Peri-arterial (AQP4) space','The para-arterial space bounded by astrocyte end-feet. CSF enters here and exchanges with brain interstitial fluid, flushing solutes toward para-venous efflux.','Iliff et al. 2012');
   const ac=new T.CatmullRomCurve3(ap);
   for(let i=0;i<11;i++){ const p=ac.getPoint(0.05+i*0.088);
     const ef=new T.Mesh(new T.SphereGeometry(0.1,14,12),MAT.astrocyte); ef.scale.set(1.4,0.6,1.4);
     ef.position.copy(p.clone().add(V((rng()-0.5),(rng()-0.5)*0.3,(rng()-0.5)).normalize().multiplyScalar(0.22)));
-    add('glymphatic',ef,'astrocyte','Astrocyte end-foot (AQP4)','End-feet studded with aquaporin-4 water channels sheath the vessel and gate glymphatic water flux.','Iliff et al. 2012 [14]'); }
+    add('glymphatic',ef,'astrocyte','Astrocyte end-foot (AQP4)','End-feet studded with aquaporin-4 water channels sheath the vessel and gate glymphatic water flux.','Iliff et al. 2012'); }
   // astrocyte cell bodies with processes reaching to the vessel
   for(let i=0;i<3;i++){ const body=V(-0.7+rng()*0.4, 0.8+i*0.9, -0.4+rng()*0.3);
     const cb=new T.Mesh(new T.SphereGeometry(0.13,16,12),MAT.astrocyte); cb.position.copy(body);
@@ -475,10 +475,10 @@ for(let i=0;i<9;i++){                                  // aggrecan brushes on a 
   // amyloid-β solute being cleared along the space
   for(let i=0;i<7;i++){ const p=ac.getPoint(0.1+rng()*0.8);
     const am=new T.Mesh(new T.IcosahedronGeometry(0.04,0),MAT.amyloid);
-    am.position.copy(p).add(rv(0.28)); add('glymphatic',am,'amyloid','Amyloid-β / solute','Metabolic waste (incl. amyloid-β) carried out of the brain by glymphatic flow, impaired clearance is linked to neurodegeneration.','Iliff et al. 2012 [14]'); }
+    am.position.copy(p).add(rv(0.28)); add('glymphatic',am,'amyloid','Amyloid-β / solute','Metabolic waste (incl. amyloid-β) carried out of the brain by glymphatic flow, impaired clearance is linked to neurodegeneration.','Iliff et al. 2012'); }
   // para-venous efflux vein
   const vp=[V(-0.6,-0.2,0.4),V(-0.5,1.1,0.5),V(-0.65,2.3,0.45),V(-0.55,TOP+0.2,0.5)];
-  add('glymphatic',new T.Mesh(tubeAlong(vp,0.16),MAT.venous),'venous','Para-venous efflux','Solute-laden fluid collects around deep veins and drains from the brain, the glymphatic outflow limb.','Iliff et al. 2012 [14]');
+  add('glymphatic',new T.Mesh(tubeAlong(vp,0.16),MAT.venous),'venous','Para-venous efflux','Solute-laden fluid collects around deep veins and drains from the brain, the glymphatic outflow limb.','Iliff et al. 2012');
 }
 
 /* ================================================================== *
@@ -515,7 +515,7 @@ function tube(pts,r,radial=12){
 
 // --- Interstitium: translucent body silhouette (the fluid is everywhere) ---
 function sil(g,x,y,z,rot){ const m=new T.Mesh(g,MAT.silhouette); m.position.set(x,y,z); if(rot)m.rotation.set(rot[0],rot[1],rot[2]);
-  addBody('core',m,'silhouette','Interstitium (body-wide)','The interstitial fluid space is continuous throughout the body, beneath every epithelium and wrapping every vessel, muscle and nerve. This translucent figure marks that pervasive compartment.','Benias et al. 2018 [32]'); return m; }
+  addBody('core',m,'silhouette','Interstitium (body-wide)','The interstitial fluid space is continuous throughout the body, beneath every epithelium and wrapping every vessel, muscle and nerve. This translucent figure marks that pervasive compartment.','Benias et al. 2018'); return m; }
 sil(new T.SphereGeometry(0.6,24,20),0,5.5,0);                       // head
 sil(new T.CylinderGeometry(0.22,0.28,0.5,16),0,4.95,0);            // neck
 sil(new T.CylinderGeometry(0.92,0.66,2.05,24),0,3.7,0);           // torso
@@ -525,7 +525,7 @@ sil(new T.CylinderGeometry(0.2,0.16,2.2,14), 1.12,3.5,0,[0,0,-0.34]);// arm R
 sil(new T.CylinderGeometry(0.29,0.18,2.7,16),-0.42,1.15,0,[0,0,0.05]);// leg L
 sil(new T.CylinderGeometry(0.29,0.18,2.7,16), 0.42,1.15,0,[0,0,-0.05]);// leg R
 [[-0.3,3.7,0],[0.3,3.7,0]].forEach(p=>{ const m=new T.Mesh(new T.BoxGeometry(0.03,1.5,0.75),MAT.collagen3); m.position.set(p[0],p[1],p[2]);
-  addBody('core',m,'collagen3','Fascia (connective sheet)','Parasagittal fascial planes are dense interstitial sheets that wrap and separate muscles and organs, a body-spanning collagen network.','Benias et al. 2018 [32]'); });
+  addBody('core',m,'collagen3','Fascia (connective sheet)','Parasagittal fascial planes are dense interstitial sheets that wrap and separate muscles and organs, a body-spanning collagen network.','Benias et al. 2018'); });
 
 // --- Nervous ---
 const brain=new T.Mesh(new T.IcosahedronGeometry(0.5,3),MAT.brain);
@@ -541,12 +541,12 @@ addBody('nervous',new T.Mesh(tube([[0,5.0,0],[0,4.2,-0.05],[0,3.2,-0.05],[0,2.5,
 // --- Circulatory ---
 { const h=new T.Mesh(new T.SphereGeometry(0.3,18,16),MAT.bloodWall); h.scale.set(1,1.2,0.8); h.position.set(-0.14,3.95,0.28);
   addBody('circulatory',h,'bloodWall','Heart','The pump generating the pressure that filters plasma across capillary walls into the interstitium.',''); }
-addBody('circulatory',new T.Mesh(tube([[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],0.055),MAT.arteriole),'arteriole','Carotid / cerebral artery','Feeds the brain; its pulsation powers the glymphatic pump.','Iliff et al. 2012 [14]');
+addBody('circulatory',new T.Mesh(tube([[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],0.055),MAT.arteriole),'arteriole','Carotid / cerebral artery','Feeds the brain; its pulsation powers the glymphatic pump.','Iliff et al. 2012');
 addBody('circulatory',new T.Mesh(tube([[-0.14,3.9,0.2],[-0.1,3.2,0.1],[-0.1,2.5,0.05]],0.07),MAT.arteriole),'arteriole','Aorta','The main arterial trunk.','');
 [[[-0.15,4.2,0.15],[-0.9,3.9,0.1],[-1.15,2.95,0]],[[0.05,4.2,0.15],[0.9,3.9,0.1],[1.15,2.95,0]],
  [[-0.1,2.6,0.05],[-0.4,1.5,0],[-0.45,0.4,0]],[[0.05,2.6,0.05],[0.4,1.5,0],[0.45,0.4,0]]].forEach(pp=>
   addBody('circulatory',new T.Mesh(tube(pp,0.035),MAT.arteriole),'arteriole','Artery','',''));
-addBody('circulatory',new T.Mesh(tube([[0.06,5.05,-0.08],[0.05,4.3,-0.05],[-0.05,3.98,0.12]],0.05),MAT.venous),'venous','Jugular / cerebral vein','Drains blood, and, via para-venous routes, glymphatic efflux from the brain.','Iliff et al. 2012 [14]');
+addBody('circulatory',new T.Mesh(tube([[0.06,5.05,-0.08],[0.05,4.3,-0.05],[-0.05,3.98,0.12]],0.05),MAT.venous),'venous','Jugular / cerebral vein','Drains blood, and, via para-venous routes, glymphatic efflux from the brain.','Iliff et al. 2012');
 
 // --- Lymphatic ---
 function nodeCluster(cx,cy,cz,n,label){ for(let i=0;i<n;i++){ const m=new T.Mesh(new T.SphereGeometry(0.055+rng()*0.03,12,10),MAT.lymphWall);
@@ -557,7 +557,7 @@ nodeCluster(-1.0,4.15,0,4,'Axillary nodes'); nodeCluster(1.0,4.15,0,4,'Axillary 
 nodeCluster(0,3.85,0.16,3,'Mediastinal nodes');
 nodeCluster(-0.42,2.3,0.12,4,'Inguinal nodes'); nodeCluster(0.42,2.3,0.12,4,'Inguinal nodes');
 addBody('lymphatic',new T.Mesh(tube([[0,2.85,-0.1],[-0.15,3.4,-0.05],[-0.3,4.2,0],[-0.35,4.75,0.05]],0.045),MAT.lymphWall),'lymphWall','Thoracic duct','The main lymphatic trunk, returning lymph to the venous circulation at the left neck.','');
-addBody('lymphatic',new T.Mesh(tube([[-0.32,5.85,0.05],[0,6.02,0.12],[0.32,5.85,0.05]],0.02),MAT.lymphFil),'lymphFil','Meningeal lymphatics','Lymphatic vessels in the dura drain CSF and brain interstitial fluid, the link joining the glymphatic and lymphatic systems.','Louveau et al. 2015 [15]');
+addBody('lymphatic',new T.Mesh(tube([[-0.32,5.85,0.05],[0,6.02,0.12],[0.32,5.85,0.05]],0.02),MAT.lymphFil),'lymphFil','Meningeal lymphatics','Lymphatic vessels in the dura drain CSF and brain interstitial fluid, the link joining the glymphatic and lymphatic systems.','Louveau et al. 2015');
 // peripheral collecting lymphatics tracing the limbs & trunk into the regional nodes
 [[[-1.15,2.95,0.05],[-1.05,3.5,0.03],[-1.0,4.1,0.0]],
  [[1.15,2.95,0.05],[1.05,3.5,0.03],[1.0,4.1,0.0]],
@@ -572,7 +572,7 @@ nodeCluster(-0.44,1.35,0.05,3,'Popliteal nodes'); nodeCluster(0.44,1.35,0.05,3,'
 nodeCluster(0,3.35,0.04,3,'Para-aortic nodes');
 
 // --- Glymphatic (brain) ---
-addBody('glymphatic',new T.Mesh(tube([[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],0.1),MAT.glymph),'glymph','Peri-arterial (glymphatic) sheath','CSF tracks inward along cerebral arteries, glymphatic influx, shown at brain scale around the feeding artery.','Iliff et al. 2012 [14]');
+addBody('glymphatic',new T.Mesh(tube([[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],0.1),MAT.glymph),'glymph','Peri-arterial (glymphatic) sheath','CSF tracks inward along cerebral arteries, glymphatic influx, shown at brain scale around the feeding artery.','Iliff et al. 2012');
 
 // --- Ventricular (brain) ---
 [[-0.13,5.62,0.02,0.16,0.24,0.11],[0.13,5.62,0.02,0.16,0.24,0.11],[0,5.4,0.08,0.1,0.2,0.09]].forEach(v=>{
@@ -582,7 +582,7 @@ addBody('glymphatic',new T.Mesh(tube([[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.
 // --- Interstitium-rich organs (Benias 2018 sampled dermis, gut & bladder submucosa, lung, fascia) ---
 function organ(g,x,y,z,s,rot,name,detail){ const m=new T.Mesh(g,MAT.organ); m.position.set(x,y,z);
   if(s)m.scale.set(s[0],s[1],s[2]); if(rot)m.rotation.set(rot[0],rot[1],rot[2]);
-  addBody('core',m,'organ',name,detail,'Benias et al. 2018 [32]'); return m; }
+  addBody('core',m,'organ',name,detail,'Benias et al. 2018'); return m; }
 organ(new T.SphereGeometry(0.3,18,16),-0.44,4.05,0.02,[0.85,1.5,0.8],null,'Lung (L)','Pulmonary interstitium, the connective space wrapping alveoli and vessels; a classic site of interstitial fluid build-up and fibrosis.');
 organ(new T.SphereGeometry(0.3,18,16), 0.44,4.05,0.02,[0.85,1.5,0.8],null,'Lung (R)','Pulmonary interstitium around the alveolar-capillary units.');
 organ(new T.SphereGeometry(0.34,18,16),0.28,3.18,0.15,[1.35,0.85,0.9],null,'Liver','Hepatic interstitium (spaces of Disse), a large, dynamic fluid compartment feeding hepatic lymph.');
@@ -630,21 +630,21 @@ makeFlow('lymphatic','micro',[V(0.9,1.7,HALF+0.3),V(0.7,1.9,0.6),V(0.9,1.75,-0.4
   {count:7,r:0.05,mat:'lymphFluid',name:'Lymph flow',detail:'Interstitial fluid drawn in through button junctions becomes lymph and moves strictly one-way toward the nodes; uptake rises with hydration and edema.',speed:0.045,hydroSens:0.7,cite:'Baluk et al. 2007'});
 // core, bulk interstitial drift toward the initial lymphatic
 makeFlow('core','micro',[V(-1.2,1.4,1.6),V(-0.2,1.6,1.4),V(0.5,1.7,1.0),V(0.9,1.75,0.4)],
-  {count:8,r:0.03,mat:'fluid',name:'Interstitial drift',detail:'Bulk interstitial fluid drifts slowly through the gel toward the initial lymphatics, the pre-lymphatic flow Benias described; it quickens markedly with hydration.',speed:0.035,jitter:true,hydroSens:1.5,cite:'Benias et al. 2018 [32]'});
+  {count:8,r:0.03,mat:'fluid',name:'Interstitial drift',detail:'Bulk interstitial fluid drifts slowly through the gel toward the initial lymphatics, the pre-lymphatic flow Benias described; it quickens markedly with hydration.',speed:0.035,jitter:true,hydroSens:1.5,cite:'Benias et al. 2018'});
 // nervous, action-potential blips racing along the axon
 makeFlow('nervous','micro',[V(-HALF-0.3,2.5,0.8),V(-0.8,2.65,0.5),V(0.4,2.45,0.9),V(HALF+0.3,2.6,0.6)],
   {count:3,r:0.05,mat:'nerveAxon',name:'Action potential',detail:'A depolarisation wave races along the axon; endings report interstitial pressure, pH and mediators back to the CNS. Its conduction depends on the ionic state of the peri-neural interstitial space.',speed:0.3,hydroSens:0.5});
 // glymphatic clearance cycle, CSF influx (peri-arterial) + waste efflux (para-venous)
 makeFlow('glymphatic','micro',[V(-1.4,-0.2,-1.0),V(-1.3,1.0,-1.05),V(-1.45,2.2,-0.95),V(-1.35,TOP+0.2,-1.0)],
-  {count:8,r:0.045,mat:'glymph',name:'CSF influx',detail:'CSF is driven inward along the peri-arterial space by arterial pulsation, the influx limb of the glymphatic clearance cycle.',speed:0.05,hydroSens:1.2,cite:'Iliff et al. 2012 [14]'});
+  {count:8,r:0.045,mat:'glymph',name:'CSF influx',detail:'CSF is driven inward along the peri-arterial space by arterial pulsation, the influx limb of the glymphatic clearance cycle.',speed:0.05,hydroSens:1.2,cite:'Iliff et al. 2012'});
 makeFlow('glymphatic','micro',[V(-0.55,TOP+0.2,0.5),V(-0.65,2.3,0.45),V(-0.5,1.1,0.5),V(-0.6,-0.2,0.4)],
-  {count:7,r:0.045,mat:'amyloid',name:'Waste efflux',detail:'Solute and amyloid-β wash out along the para-venous route, the clearance limb; impaired efflux is linked to neurodegeneration.',speed:0.045,hydroSens:1.2,cite:'Iliff et al. 2012 [14]'});
+  {count:7,r:0.045,mat:'amyloid',name:'Waste efflux',detail:'Solute and amyloid-β wash out along the para-venous route, the clearance limb; impaired efflux is linked to neurodegeneration.',speed:0.045,hydroSens:1.2,cite:'Iliff et al. 2012'});
 // ventricular, CSF propelled along the ciliated channel
 makeFlow('ventricular','micro',[V(1.5,-0.2,1.2),V(1.4,1.1,1.25),V(1.55,2.3,1.15),V(1.45,TOP+0.2,1.2)],
   {count:8,r:0.04,mat:'csf',name:'CSF flow',detail:'Ciliary beating and arterial pulsation propel CSF along the ventricular channel.',speed:0.055,hydroSens:1.0});
 // body scale, arterial, cerebral, and thoracic-duct flow
 makeFlow('circulatory','body',[[-0.14,3.9,0.2],[-0.1,3.2,0.1],[-0.1,2.5,0.05]],{count:4,r:0.03,scaleY:0.6,mat:'rbc',name:'Arterial flow',detail:'Blood driven from the heart down the aorta.',speed:0.08,hydroSens:0.5});
-makeFlow('circulatory','body',[[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],{count:3,r:0.026,scaleY:0.6,mat:'rbc',name:'Cerebral flow',detail:'Blood to the brain; its pulsation powers glymphatic influx.',speed:0.07,hydroSens:0.5,cite:'Iliff et al. 2012 [14]'});
+makeFlow('circulatory','body',[[-0.14,3.95,0.25],[0,4.55,0.12],[0,5.05,0.02]],{count:3,r:0.026,scaleY:0.6,mat:'rbc',name:'Cerebral flow',detail:'Blood to the brain; its pulsation powers glymphatic influx.',speed:0.07,hydroSens:0.5,cite:'Iliff et al. 2012'});
 makeFlow('lymphatic','body',[[0,2.85,-0.1],[-0.15,3.4,-0.05],[-0.3,4.2,0],[-0.35,4.75,0.05]],{count:5,r:0.022,mat:'lymphFluid',name:'Thoracic-duct flow',detail:'Lymph ascends the thoracic duct to rejoin venous blood at the left neck.',speed:0.04,hydroSens:0.7});
 
 /* --- interstitial interfaces: the shared fluid medium cuffing every system --- */
@@ -656,7 +656,7 @@ makeFlow('lymphatic','body',[[0,2.85,-0.1],[-0.15,3.4,-0.05],[-0.3,4.2,0],[-0.35
  ['ventricular',V(1.5,1.15,1.2),'peri-ependymal','couples ventricular CSF to brain interstitial fluid']
 ].forEach(([sys,pos,nm,det])=>{
   const m=new T.Mesh(new T.SphereGeometry(0.42,18,14),MAT.fluid); m.position.copy(pos);
-  add('core',m,'fluid','Interstitial interface, '+nm,'A cuff of shared interstitial fluid that '+det+'. It is the most hydration-sensitive compartment in the body: a small water shift changes its width, matrix density and even protein conformation, and because it wraps every system, that single change propagates outward to all of them.','Benias et al. 2018 [32]');
+  add('core',m,'fluid','Interstitial interface, '+nm,'A cuff of shared interstitial fluid that '+det+'. It is the most hydration-sensitive compartment in the body: a small water shift changes its width, matrix density and even protein conformation, and because it wraps every system, that single change propagates outward to all of them.','Benias et al. 2018');
   registerHydro(h=>{ const s=0.55+h*0.95; m.scale.set(s,s*0.8,s); });
 });
 // extra load-bearing lattice + gel, emphasising the pervasive matrix
@@ -897,58 +897,58 @@ const POPS=[
   {n:1,name:'Fasciacytes',lin:'stromal',body:[-0.5,1.5,0.25],
    niche:'Deep fascia sublayers (limb, trunk).',
    purpose:'Secrete a hyaluronan-rich matrix that lets adjacent fascial sublayers glide.',
-   pos:'S100A4, HAS2, VIM',neg:'CD68',ref:'Stecco et al. 2018 [5]'},
+   pos:'S100A4, HAS2, VIM',neg:'CD68',ref:'Stecco et al. 2018'},
   {n:2,name:'Telocytes',lin:'pace',body:[0.28,2.9,0.5],disputed:true,
    niche:'Perivascular / subepithelial, most organs.',
    purpose:'Putative stromal signalling network via long telopode contacts.',
-   pos:'CD34, PDGFRA, KIT/PDGFRB (organ-dependent)',neg:'none',ref:'Popescu & Faussone 2010 [3]',
+   pos:'CD34, PDGFRA, KIT/PDGFRB (organ-dependent)',neg:'none',ref:'Popescu & Faussone 2010',
    note:'Disputed: CD34/PDGFRA alone cannot separate them from adventitial fibroblasts in dissociated data.'},
   {n:3,name:'Adventitial fibroblasts',lin:'stromal',body:[-0.32,3.25,0.3],micro:[1.2,1.0,0.9],
    niche:'Vessel adventitia & organ capsules.',
    purpose:'Quiescent progenitor reservoir for specialized and injury-activated fibroblasts.',
-   pos:'PI16, DPT, PDGFRA, CD34',neg:'low ACTA2, low PDGFRB',ref:'Buechler et al. 2021 [1]'},
+   pos:'PI16, DPT, PDGFRA, CD34',neg:'low ACTA2, low PDGFRB',ref:'Buechler et al. 2021'},
   {n:4,name:'Pericytes',lin:'mural',body:[0.25,3.7,0.45],micro:[-0.2,1.05,-0.75],
    niche:'Capillary / venule basement membrane, all vascular tissue.',
    purpose:'Stabilize and regulate the microvascular wall. NOTCH3 loss → CADASIL small-vessel disease.',
-   pos:'PDGFRB, RGS5, CSPG4, NOTCH3, MCAM',neg:'PECAM1, PTPRC, CLDN5',ref:'Vanlandewijck et al. 2018 [7]'},
+   pos:'PDGFRB, RGS5, CSPG4, NOTCH3, MCAM',neg:'PECAM1, PTPRC, CLDN5',ref:'Vanlandewijck et al. 2018'},
   {n:5,name:'Perivascular fibroblasts',lin:'stromal',body:[0.15,4.85,0.35],micro:[-1.4,1.55,-1.0],
    niche:'Cerebral Virchow-Robin perivascular spaces (vessels > capillary).',
    purpose:'Structural sheath lining the perivascular CSF-influx conduits of the glymphatic route.',
-   pos:'COL1A1/3A1, DCN, LUM, ANPEP',neg:'RGS5',ref:'Vanlandewijck et al. 2018 [7]'},
+   pos:'COL1A1/3A1, DCN, LUM, ANPEP',neg:'RGS5',ref:'Vanlandewijck et al. 2018'},
   {n:6,name:'Fibroblastic reticular cells',lin:'stromal',body:[1.15,4.15,0.3],
    niche:'T-cell zones of lymph node & spleen.',
    purpose:'Channel antigen and guide T-cell trafficking through a self-ensheathed collagen conduit network.',
-   pos:'PDPN, CCL19, CCL21A, IL7',neg:'PECAM1, PTPRC',ref:'Rodda et al. 2018 [8]'},
+   pos:'PDPN, CCL19, CCL21A, IL7',neg:'PECAM1, PTPRC',ref:'Rodda et al. 2018'},
   {n:7,name:'Mesenchymal stem/stromal cells',lin:'stromal',body:[0.5,1.7,0.3],disputed:true,
    niche:'Bone-marrow perivascular niche (also fat, cord, dental pulp).',
    purpose:'Clonogenic progenitor with tri-lineage (bone/fat/cartilage) potential.',
-   pos:'NT5E/CD73, THY1/CD90, ENG/CD105',neg:'PTPRC, CD34, CD14, CD19, HLA-DR',ref:'ISCT criteria, Dominici et al. 2006 [10]',
+   pos:'NT5E/CD73, THY1/CD90, ENG/CD105',neg:'PTPRC, CD34, CD14, CD19, HLA-DR',ref:'ISCT criteria, Dominici et al. 2006',
    note:'Disputed: in scRNA-seq they overlap adventitial/perivascular fibroblasts, niche-intrinsic vs culture-induced identity is unresolved.'},
   {n:8,name:'Interstitial macrophages',lin:'immune',body:[0.66,4.1,0.35],micro:[0.6,1.6,0.6],
    niche:'Non-epithelial compartment of nearly every organ.',
    purpose:'LYVE1-hi subset supports vessels & restrains fibrosis; LYVE1-lo, nerve-associated subset is antigen-presenting.',
-   pos:'CSF1R, FCGR1, MERTK, LYVE1/MRC1',neg:'(subset-dependent)',ref:'Chakarov et al. 2019 [11]'},
+   pos:'CSF1R, FCGR1, MERTK, LYVE1/MRC1',neg:'(subset-dependent)',ref:'Chakarov et al. 2019'},
   {n:9,name:'Interstitial cells of Cajal',lin:'pace',body:[-0.22,2.78,0.5],
    niche:'Myenteric & intramuscular GI plexuses.',
    purpose:'KIT-dependent pacemaker cells generating the gut slow-wave. Not to be confused with telocytes.',
-   pos:'KIT/CD117, ANO1, ETV1',neg:'CD34 (most GI subtypes)',ref:'Huizinga et al. 1995 [4]'},
+   pos:'KIT/CD117, ANO1, ETV1',neg:'CD34 (most GI subtypes)',ref:'Huizinga et al. 1995'},
   {n:10,name:'Lymphatic stromal cells',lin:'lymphcsf',body:[0.55,4.78,0.35],
    niche:'Lymphatic vessel wall & lymph-node subcapsular sinus.',
    purpose:'Line lymphatics and drive lymphangiogenesis via VEGFC-FLT4 signalling; PROX1 is the discriminator.',
-   pos:'PROX1, PDPN, LYVE1, FLT4',neg:'(shares PECAM1 with blood endothelium)',ref:'Wigle & Oliver 1999 [13]'},
+   pos:'PROX1, PDPN, LYVE1, FLT4',neg:'(shares PECAM1 with blood endothelium)',ref:'Wigle & Oliver 1999'},
   {n:11,name:'Glymphatic-associated stroma',lin:'lymphcsf',body:[-0.4,5.95,0.45],micro:[-1.4,1.75,-1.0],disputed:true,
    niche:'Perivascular CSF spaces; subarachnoid (disputed SLYM 4th layer).',
    purpose:'Implicated in CSF influx and clearance of interstitial solutes including amyloid-β.',
-   pos:'COL1A1, ANPEP; SLYM: PDPN, PROX1, CRABP2',neg:'SLYM: LYVE1, FLT4, CLDN11, CDH1',ref:'Iliff 2012 [14]; SLYM, Møllgård et al. 2023 [17]',
+   pos:'COL1A1, ANPEP; SLYM: PDPN, PROX1, CRABP2',neg:'SLYM: LYVE1, FLT4, CLDN11, CDH1',ref:'Iliff 2012; SLYM, Møllgård et al. 2023',
    note:'Disputed: the SLYM phenotype lacks a lymphatic immunophenotype; rebuttals place the Prox1+ cells within the arachnoid barrier layer.'},
   {n:12,name:'Meningeal fibroblasts',lin:'stromal',body:[0.4,5.95,0.4],
    niche:'Dura, arachnoid and pia surrounding the CNS.',
    purpose:'Three molecularly distinct layers giving layer-specific structural and barrier support.',
-   pos:'Dura: CRABP2, MGP · Arachnoid: ALDH1A2, CLDN11 · Pia: S100A6, NGFR',neg:'(layer-reciprocal)',ref:'DeSisto et al. 2020 [21]'},
+   pos:'Dura: CRABP2, MGP · Arachnoid: ALDH1A2, CLDN11 · Pia: S100A6, NGFR',neg:'(layer-reciprocal)',ref:'DeSisto et al. 2020'},
   {n:13,name:'Organ-specific fibroblasts',lin:'stromal',body:[-0.4,3.9,0.5],
    niche:'Heart, lung, kidney, gut, skin, specializing a shared stromal template.',
    purpose:'Tissue-tailored ECM/signalling niches (e.g. the gut BMP-WNT crypt-to-villus gradient).',
-   pos:'TCF21 · PDGFRA/WNT2 · FOXD1 · GREM1/RSPO3 · SFRP2/DPP4',neg:'(organ-reciprocal)',ref:'Skelly 2018 [22] … Rinkevich 2015 [31]'}
+   pos:'TCF21 · PDGFRA/WNT2 · FOXD1 · GREM1/RSPO3 · SFRP2/DPP4',neg:'(organ-reciprocal)',ref:'Skelly 2018 … Rinkevich 2015'}
 ];
 POPS.forEach(p=>{ p.color=LIN[p.lin].c; p.linLabel=LIN[p.lin].label; });
 
@@ -1018,40 +1018,40 @@ const SCEN=[
    apply(){ setSystems(null); atlasSet(false); applyHydro(0.55); setHydration(0.55); reflectHydration(0.55);
      tweenTo(HOME,900); setCaption('Homeostasis, normal reference',
        'All six systems at normal hydration (~0.55). Interstitial channels are open, glymphatic influx and lymph uptake run at baseline, and the peri-neural space holds the ionic buffer that keeps axons excitable. This is the reference state the other scenarios are read against.',
-       'Benias et al. 2018 [32] · Iliff et al. 2012 [14]'); }},
+       'Benias et al. 2018 · Iliff et al. 2012'); }},
 
   {id:'perineural',label:'Perineural collapse',
    apply(){ setSystems(['core','nervous']); atlasSet(true); spotlightPops([12,5]); applyHydro(0.0); setHydration(0.0); reflectHydration(0);
      tweenTo(frameAt(worldMicro([0.05,2.55,0.7]),2.0),1000);
      setCaption('Perineural space collapse → axonal environment failure',
        'Dehydration collapses the peri-neural interstitial cuff (⚠ ring). The narrow fluid film that buffers extracellular ions thins, ion gradients drift, and the axon’s micro-environment turns hostile, conduction block first, then structural axonal injury if sustained. Because the interstitium is physically continuous along perineural sheaths, a systemic water deficit is transmitted directly to the nerve.',
-       'Continuity of interstitial spaces, Cenaj et al. 2021 [33] · Benias et al. 2018 [32]'); }},
+       'Continuity of interstitial spaces, Cenaj et al. 2021 · Benias et al. 2018'); }},
 
   {id:'glymphatic',label:'Glymphatic failure',
    apply(){ setSystems(['core','glymphatic','circulatory']); atlasSet(true); spotlightPops([11,5]); applyHydro(0.08); setHydration(0.08); reflectHydration(NaN);
      tweenTo(frameAt(worldMicro([-1.4,1.1,-1.0]),1.9),1000);
      setCaption('Glymphatic clearance failure → amyloid-β accumulation',
        'When the peri-arterial (AQP4) space narrows, advective CSF influx falls and solute clearance drops. Biophysical modelling shows clearance of heavy aggregates falls off exponentially once flow crosses a modest Péclet threshold, so a small loss of perivascular flow leaves amyloid-β (grey solute) behind, the clearance deficit linked to neurodegeneration.',
-       'Iliff et al. 2012 [14] · Péclet-threshold model, Mukherjee & Tithof 2022 [20]'); }},
+       'Iliff et al. 2012 · Péclet-threshold model, Mukherjee & Tithof 2022'); }},
 
   {id:'ischemic',label:'Ischemic / CADASIL',
    apply(){ setSystems(['core','circulatory']); atlasSet(true); spotlightPops([4]); applyHydro(0.12); setHydration(0.12); reflectHydration(NaN);
      tweenTo(frameAt(worldMicro([0.0,1.0,-0.85]),1.9),1000);
      setCaption('Ischemic small-vessel disease, pericyte failure (CADASIL)',
        'Pericytes (pin ④) stabilise and tune the microvascular wall through PDGFB-PDGFRB and NOTCH3 signalling. NOTCH3 mutations that disrupt this axis cause CADASIL, a hereditary small-vessel disease with progressive white-matter injury and stroke. Here the capillary bed is shown constricted: perfusion falls, Starling filtration that supplies interstitial fluid drops, and the shared matrix downstream is starved.',
-       'Brain vascular atlas, Vanlandewijck et al. 2018 [7] · CADASIL / NOTCH3 (Glossary)'); }},
+       'Brain vascular atlas, Vanlandewijck et al. 2018 · CADASIL / NOTCH3 (Glossary)'); }},
 
   {id:'edema',label:'Edema',
    apply(){ setSystems(null); atlasSet(false); applyHydro(1.0); setHydration(1.0); reflectHydration(1);
      tweenTo(HOME,900); setCaption('Over-hydration → congestion / edema',
        'Excess water over-fills the matrix (⚠ blue rings). The swollen gel widens the interstitial cuffs, compresses neighbouring vessels and nerves, and raises back-pressure, lymph uptake saturates while diffusion distances lengthen. The same shared compartment that transmits a deficit also transmits an excess to every system it wraps.',
-       'Benias et al. 2018 [32]'); }},
+       'Benias et al. 2018'); }},
 
   {id:'continuity',label:'Continuity',
    apply(){ setSystems(['core','nervous','circulatory']); atlasSet(true); spotlightPops([1,5,11]); applyHydro(0.55); setHydration(0.55); reflectHydration(0.55);
      tweenTo(frameBox(BODY,1.45),1000); setCaption('Interstitial continuity, skin → fascia → perineural → perivascular',
        'In-vivo confocal endomicroscopy and tracer studies show the fluid-filled interstitium is not organ-confined: it runs continuously from skin into subcutaneous fascia, along perineural and perivascular sheaths, and into the cerebral Virchow-Robin spaces, an estimated fluid volume exceeding the combined cardiovascular and lymphatic systems. Pins ①⑤⑪ mark stromal populations lining that one continuous compartment.',
-       'Benias et al. 2018 [32] · Cenaj et al. 2021 [33]'); }}
+       'Benias et al. 2018 · Cenaj et al. 2021'); }}
 ];
 function runScenario(id){ const s=SCEN.find(x=>x.id===id); if(s) s.apply(); }
 

@@ -30,7 +30,7 @@ The map is where that claim becomes testable. Hydration is a continuous, model-w
 > - Added a 761–1149px layout band so laptop-width windows get the full desktop interface. Previously the fixed panels overlapped badly in that range: `#scenarios` covered the systems list, `#warn` covered the controls, and `#atlas` floated over the model at `left:376px`.
 > - In that band the legend and literature list open on demand from a rail in the header, and the flow-warning panel reveals itself when a system leaves nominal flow, releasing its reserved space back to the control panel otherwise.
 > - Corrected the device router to decide on input type (touch points, `pointer: coarse`, `hover: none`) and viewport **width**, not screen resolution. The old test sent 1366×768 laptops to the touch build.
-> - Expanded the in-app literature list from 4 entries to all **19** sources the model actually cites, and aligned the Zenodo `references` field to the same set.
+> - Expanded the in-app literature list from 4 entries to all **23** sources the map actually draws on, split into structural/cellular basis (19) and baseline flow velocities (4), and aligned the README PDF and the Zenodo `references` field to the same set. Reference indices pointing into the companion review were dropped; the lists now stand on their own, alphabetically.
 > - Gave `#atlas` a phone-width slot; it previously overflowed at `≤760px`.
 >
 > **v1.1.1 (patch, 2026-08-15)** — interface fix only. No change to the model, geometry, data, figures, or any manuscript content.

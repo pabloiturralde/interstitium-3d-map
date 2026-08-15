@@ -32,7 +32,13 @@
   ul{ margin:4pt 0 8pt; padding-left:16pt; }
   li{ margin:0 0 5pt; text-wrap:pretty; }
   li b, p b{ font-weight:600; }
-  .refs li{ font-size:10pt; color:var(--dim); }
+  .refs{ margin:6pt 0 0; padding-left:0; list-style:none; }
+  .refs li{ font-size:9.5pt; color:var(--dim); margin-bottom:5pt;
+    text-indent:-11pt; padding-left:11pt; }
+  .refs li i{ color:var(--ink); }
+  .refs + p{ margin-top:10pt; }
+  .rh{ font-family:"IBM Plex Mono", monospace; font-size:8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink); margin:12pt 0 2pt; }
   .hyp{ border:1px solid var(--accent); border-radius:8pt; padding:12pt 14pt; margin:12pt 0; background:#f7fbfa; }
   .hyp .tag{ font-family:"IBM Plex Mono", monospace; font-size:7.5pt; letter-spacing:.1em; text-transform:uppercase;
     color:var(--accent); display:block; margin-bottom:5pt; }
@@ -67,7 +73,7 @@
     <li>Added a 761–1149px layout band so laptop-width windows get the full desktop interface; the fixed panels previously overlapped throughout that range.</li>
     <li>In that band the legend and literature list open on demand, and the flow-warning panel reveals itself only when a system leaves nominal flow.</li>
     <li>Corrected the device router to decide on input type and viewport width rather than screen resolution.</li>
-    <li>Expanded the in-app literature list from 4 entries to all 19 sources the model cites.</li>
+    <li>Expanded the in-app literature list from 4 entries to all 23 sources the map draws on, grouped by role and listed alphabetically, and aligned this document and the Zenodo record to the same set.</li>
   </ul>
 
   <h2>Changes in v1.1.1</h2>
@@ -138,21 +144,37 @@
   </table>
   <p>Figures 3 and 4 are the visual statement of the <b>Interstitial Hydraulic Gating</b> hypothesis: the collapse and distension limbs of the gate, side by side, on one anatomy.</p>
 
-  <h2>Scientific basis</h2>
-  <p>The model is a schematic synthesis grounded in the <b>41 references</b> of the companion review (<code>manuscripts/comprehensive-interstitial-cell-atlas/refs.bib</code>). Its structural claims rest on, among others:</p>
+  <h2>Sources</h2>
+  <p>The model is a schematic synthesis. It draws directly on <b>23 sources</b>, listed in full below and reproduced in the map’s own literature panel. The companion review cites 41 works in total; the remainder address matters the map does not depict, so they are not listed here.</p>
+  <p class="rh">Structural and cellular basis</p>
   <ul class="refs">
-    <li>Benias, P. C., et al. (2018). <i>Structure and distribution of an unrecognized interstitium in human tissues.</i> Scientific Reports.</li>
-    <li>Cenaj, O., et al. (2021). <i>Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans.</i> Communications Biology.</li>
-    <li>Iliff, J. J., et al. (2012). <i>A paravascular pathway facilitates CSF flow… (the glymphatic system).</i> Science Translational Medicine.</li>
-    <li>Louveau, A., et al. (2015). <i>Structural and functional features of central nervous system lymphatic vessels.</i> Nature.</li>
-    <li>Møllgård, K., et al. (2023). <i>A mesothelium divides the subarachnoid space into functional compartments.</i> Science.</li>
+    <li>Baluk, P. et al. (2007). <i>Functionally specialized junctions between endothelial cells of lymphatic vessels.</i> J. Exp. Med. 204, 2349-2362</li>
+    <li>Benias, P.C. et al. (2018). <i>Structure and distribution of an unrecognized interstitium in human tissues.</i> Sci. Rep. 8, 4947</li>
+    <li>Buechler, M.B. et al. (2021). <i>Cross-tissue organization of the fibroblast lineage.</i> Nature 593, 575-579</li>
+    <li>Cenaj, O. et al. (2021). <i>Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans.</i> Commun. Biol. 4, 436</li>
+    <li>Chakarov, S. et al. (2019). <i>Two distinct interstitial macrophage populations coexist across tissues in specific subtissular niches.</i> Science 363, eaau0964</li>
+    <li>DeSisto, J. et al. (2020). <i>Single-cell transcriptomic analyses of the developing meninges reveal meningeal fibroblast diversity and function.</i> Dev. Cell 54, 43-59</li>
+    <li>Dominici, M. et al. (2006). <i>Minimal criteria for defining multipotent mesenchymal stromal cells.</i> Cytotherapy 8, 315-317</li>
+    <li>Huizinga, J.D. et al. (1995). <i>W/kit gene required for interstitial cells of Cajal and for intestinal pacemaker activity.</i> Nature 373, 347-349</li>
+    <li>Iliff, J.J. et al. (2012). <i>A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes, including amyloid β.</i> Sci. Transl. Med. 4, 147ra111</li>
+    <li>Louveau, A. et al. (2015). <i>Structural and functional features of central nervous system lymphatic vessels.</i> Nature 523, 337-341</li>
+    <li>Møllgård, K. et al. (2023). <i>A mesothelium divides the subarachnoid space into functional compartments.</i> Science 379, 84-88</li>
+    <li>Mukherjee, S. &amp; Tithof, J. (2022). <i>Model of glymphatic clearance of aggregating proteins from the brain interstitium.</i> Phys. Rev. E 105, 024405</li>
+    <li>Popescu, L.M. &amp; Faussone-Pellegrini, M.S. (2010). <i>Telocytes: from interstitial cells of Cajal to telocytes.</i> J. Cell. Mol. Med. 14, 729-740</li>
+    <li>Rinkevich, Y. et al. (2015). <i>Identification and isolation of a dermal lineage with intrinsic fibrogenic potential.</i> Science 348, aaa2151</li>
+    <li>Rodda, L.B. et al. (2018). <i>Single-cell RNA sequencing of lymph node stromal cells reveals niche-associated heterogeneity.</i> Immunity 48, 1014-1028</li>
+    <li>Skelly, D.A. et al. (2018). <i>Single-cell transcriptional profiling reveals cellular diversity and intercommunication in the mouse heart.</i> Cell Rep. 22, 600-610</li>
+    <li>Stecco, C. et al. (2018). <i>The fasciacytes: a new cell devoted to fascial gliding regulation.</i> Clin. Anat. 31, 667-676</li>
+    <li>Vanlandewijck, M. et al. (2018). <i>A molecular atlas of cell types and zonation in the brain vasculature.</i> Nature 554, 475-480</li>
+    <li>Wigle, J.T. &amp; Oliver, G. (1999). <i>Prox1 function is required for the development of the murine lymphatic system.</i> Cell 98, 769-778</li>
   </ul>
-  <p>The baseline flow velocities the hydration model scales, and therefore the quantitative spine of the IHG hypothesis, are taken from direct measurement:</p>
+  <p class="rh">Baseline flow velocities</p>
+  <p>These anchor the quantitative spine of the IHG hypothesis and are taken from direct measurement:</p>
   <ul class="refs">
-    <li>Chary, S. R. &amp; Jain, R. K. (1989). <i>Direct measurement of interstitial convection and diffusion of albumin…</i> PNAS., interstitial bulk flow.</li>
-    <li>Mestre, H., et al. (2018). <i>Flow of cerebrospinal fluid is driven by arterial pulsations and is reduced in hypertension.</i> Nature Communications., perivascular CSF.</li>
-    <li>Fischer, M., et al. (1996). <i>Flow velocity of single lymphatic capillaries in human skin.</i> American Journal of Physiology., initial lymphatics.</li>
-    <li>Scallan, J., et al. (2010). <i>Capillary Fluid Exchange: Regulation, Functions, and Pathology.</i> Morgan &amp; Claypool., Starling exchange.</li>
+    <li>Chary, S.R. &amp; Jain, R.K. (1989). <i>Direct measurement of interstitial convection and diffusion of albumin in normal and neoplastic tissues by fluorescence photobleaching.</i> Proc. Natl. Acad. Sci. USA 86, 5385-5389 — interstitial bulk flow.</li>
+    <li>Fischer, M. et al. (1996). <i>Flow velocity of single lymphatic capillaries in human skin.</i> Am. J. Physiol. 270, H358-H363 — initial lymphatics.</li>
+    <li>Mestre, H. et al. (2018). <i>Flow of cerebrospinal fluid is driven by arterial pulsations and is reduced in hypertension.</i> Nat. Commun. 9, 4878 — perivascular CSF.</li>
+    <li>Scallan, J. et al. (2010). <i>Capillary Fluid Exchange: Regulation, Functions, and Pathology.</i> Morgan &amp; Claypool Life Sciences — Starling exchange.</li>
   </ul>
   <p>It is a conceptual and hypothesis-generating visualization, not a voxel-accurate anatomical dataset: velocities are literature-anchored at the normal state and scaled by the model’s hydration law, so cross-state values are predictions to be tested, not measurements.</p>
 
