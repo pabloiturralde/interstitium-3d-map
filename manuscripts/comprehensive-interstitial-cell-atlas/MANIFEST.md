@@ -77,7 +77,7 @@ archive an older model than the one that produced the figures.
 | `repo/CITATION.cff` | v1.1.0, 2026-08-12, `license: CC-BY-4.0`. Agrees with `.zenodo.json`. |
 | `repo/LICENSE` | **CC BY 4.0**, consistent with the open deposit. Prior all-rights-reserved text preserved in `LICENSE-previous-all-rights-reserved.txt` and governs any copy circulated before the v1.1.0 release. |
 | `repo/RELEASING.md` | The release procedure. Version has to be updated in three places before tagging. |
-| Concept DOI | 10.5281/zenodo.21584351, always resolves to latest. Cite the **version** DOI in the manuscript. |
+| Concept DOI | 10.5281/zenodo.21584350, always resolves to latest. Cite the **version** DOI in the manuscript. |
 
 ## Reader-facing documents
 
@@ -267,7 +267,8 @@ So the deposit and the live version do different jobs, and the manuscript now sa
 - **Project home page**, reference [43], https://pabloiturralde.github.io/interstitium-3d-map/
   runs in the browser with no download. This is the link to give readers, reviewers and
   anyone on a phone.
-- **Archived version**, reference [42], DOI 10.5281/zenodo.21584351, is the citable frozen
+- **Archived version**, reference [42], DOI 10.5281/zenodo.21584351 (the **version** DOI for v1.1.0;
+  concept DOI is 10.5281/zenodo.21584350), is the citable frozen
   copy. Its two builds are self-contained single files that open offline once downloaded.
 
 This is exactly the split BMC's "Project home page" and "Archived version" fields are for,

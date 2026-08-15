@@ -45,7 +45,7 @@
 </head>
 <body>
 <doc-page margin="0.85in">
-  <div slot="header" class="hdr">The Human Interstitium, Interactive 3D Map · v1.1.0</div>
+  <div slot="header" class="hdr">The Human Interstitium, Interactive 3D Map · v1.1.2</div>
   <div slot="footer" class="ftr"><span>© 2026 Pablo Iturralde</span><span>DOI 10.5281/zenodo.21584350</span></div>
 
   <h1>The Human Interstitium<br />Interactive 3D Map</h1>
@@ -61,12 +61,29 @@
     <p>The map is where that claim becomes testable. Hydration is a continuous, model-wide parameter, not an illustration: moving it recomputes channel width, matrix density, protein conformation, fluid volume, and flow rate for all five systems at once, and the live constriction/congestion panel reports each system’s deviation from normal. The published Figures 3 and 4 are deterministic presets of this same model, so any reader can reproduce, or contradict, the panels by loading the tool and sweeping the parameter themselves.</p>
   </div>
 
+  <h2>Changes in v1.1.2</h2>
+  <p>Interface and documentation only. No change to the model, geometry, data, figures, or any manuscript content.</p>
+  <ul>
+    <li>Added a 761–1149px layout band so laptop-width windows get the full desktop interface; the fixed panels previously overlapped throughout that range.</li>
+    <li>In that band the legend and literature list open on demand, and the flow-warning panel reveals itself only when a system leaves nominal flow.</li>
+    <li>Corrected the device router to decide on input type and viewport width rather than screen resolution.</li>
+    <li>Expanded the in-app literature list from 4 entries to all 19 sources the model cites.</li>
+  </ul>
+
+  <h2>Changes in v1.1.1</h2>
+  <p>Interface fix only. No change to the model, geometry, data, figures, or any manuscript content.</p>
+  <ul>
+    <li>Repaired 59 malformed <code>rgba()</code> and 3 malformed <code>cubic-bezier()</code> values across the mobile and desktop stylesheets. Each was missing an argument separator, so CSS parsers discarded the whole declaration and unselected control buttons rendered with no background fill.</li>
+    <li>Raised unselected-control contrast on both builds: label text from 0.58–0.62 to 0.78–0.82 alpha, a subtle fill and brighter border on every control class, and toggled-off system rows from 0.4 to 0.72 opacity.</li>
+    <li>Selected controls keep the solid light pill with dark text.</li>
+  </ul>
+
   <div class="meta">
     <b>Author</b> &nbsp;Pablo Iturralde · ORCID 0000-0003-4106-4433<br />
     <b>Affiliation</b> &nbsp;Brown University<br />
     <b>Copyright</b> &nbsp;© 2026 Pablo Iturralde<br />
-    <b>Version</b> &nbsp;1.1.0 · 2026-08-12<br />
-    <b>Status</b> &nbsp;Repository private until the companion manuscript is submitted; public thereafter.<br />
+    <b>Version</b> &nbsp;1.1.2 · 2026-08-15<br />
+    <b>Status</b> &nbsp;Public. Companion manuscript submitted to <i>Fluids and Barriers of the CNS</i>, 2026-08-15; under editorial consideration.<br />
     <b>License</b> &nbsp;<b>CC BY 4.0</b> from the v1.1.0 release onward. See LICENSE.
   </div>
 
@@ -76,14 +93,14 @@
     <thead><tr><th>File</th><th>Description</th></tr></thead>
     <tbody>
       <tr><td>Interstitial-System-3D-Map.html</td><td>Desktop version (source; loads three.js via CDN)</td></tr>
-      <tr><td>…_desktop_v1.1.0.html</td><td>Desktop, self-contained single file (as archived on Zenodo)</td></tr>
+      <tr><td>…_desktop_v1.1.2.html</td><td>Desktop, self-contained single file (as archived on Zenodo)</td></tr>
       <tr><td>Interstitial-System-3D-Map-Mobile.html</td><td>Mobile version, tap-select, bottom-sheet UI, confocal palette</td></tr>
-      <tr><td>…_mobile_v1.1.0.html</td><td>Mobile, self-contained single file (as archived on Zenodo)</td></tr>
+      <tr><td>…_mobile_v1.1.2.html</td><td>Mobile, self-contained single file (as archived on Zenodo)</td></tr>
       <tr><td>interstitium-model.js</td><td>Shared model: geometry, materials, systems, flows, hydration logic</td></tr>
       <tr><td>three-d-stage.js</td><td>3D viewer/exporter shell (renderer, lighting, OrbitControls, OBJ/GLB export)</td></tr>
       <tr><td>index.html</td><td>Redirect to the desktop version</td></tr>
       <tr><td>figures/</td><td>Figures 1-4 of the companion review, rendered from this model</td></tr>
-      <tr><td>manuscripts/</td><td>Manuscript drafts (current: v12, FBCNS format), see <code>manuscripts/README.md</code></td></tr>
+      <tr><td>manuscripts/</td><td>Manuscript drafts (current: v16, FBCNS format), see <code>manuscripts/README.md</code></td></tr>
     </tbody>
   </table>
 
@@ -91,8 +108,8 @@
   <ul>
     <li><b>Desktop:</b> open <code>Interstitial-System-3D-Map.html</code> in a modern browser (Chrome, Safari, Firefox, Edge).</li>
     <li><b>In a browser, no download:</b> <a href="https://pabloiturralde.github.io/interstitium-3d-map/">pabloiturralde.github.io/interstitium-3d-map/</a> — served by GitHub Pages; phones and tablets are routed to the touch build automatically. Note that Zenodo serves its files as downloads and does not run HTML in the browser, so this is the link for anyone who wants to just open it.</li>
-    <li><b>Offline / portable:</b> open <code>…_desktop_v1.1.0.html</code> (or <code>…_mobile_v1.1.0.html</code>) directly, no server needed.</li>
-    <li><b>iPhone / iPad:</b> save <code>…_mobile_v1.1.0.html</code> to the <b>Files</b> app and open it there. Do <b>not</b> open it through a Google Drive link, Drive serves HTML as plain text and shows source code instead of running it.</li>
+    <li><b>Offline / portable:</b> open <code>…_desktop_v1.1.2.html</code> (or <code>…_mobile_v1.1.2.html</code>) directly, no server needed.</li>
+    <li><b>iPhone / iPad:</b> save <code>…_mobile_v1.1.2.html</code> to the <b>Files</b> app and open it there. Do <b>not</b> open it through a Google Drive link, Drive serves HTML as plain text and shows source code instead of running it.</li>
   </ul>
 
   <h2>Features</h2>
@@ -140,10 +157,10 @@
   <p>It is a conceptual and hypothesis-generating visualization, not a voxel-accurate anatomical dataset: velocities are literature-anchored at the normal state and scaled by the model’s hydration law, so cross-state values are predictions to be tested, not measurements.</p>
 
   <h2>Archiving &amp; DOI</h2>
-  <p>This repository is wired for <b>GitHub → Zenodo</b> integration: cutting a GitHub release archives a snapshot and mints a citable DOI, using the metadata in <code>.zenodo.json</code>. Full step-by-step in <code>RELEASING.md</code>. A machine-readable citation lives in <code>CITATION.cff</code> (GitHub renders a “Cite this repository” button from it). The record is <b>published and open</b> at <a href="https://zenodo.org/records/21584350">zenodo.org/records/21584350</a>. From release <b>v1.1.0</b> it is fully <b>open</b>: <code>.zenodo.json</code> sets <code>access_right: open</code> with <code>license: cc-by-4.0</code>, matching <code>LICENSE</code> and the open-access terms of the companion journal. The repository stays private until the manuscript is submitted, then goes public and the release is cut, Zenodo archives private repositories too, so nothing is lost by waiting.</p>
+  <p>This repository is wired for <b>GitHub → Zenodo</b> integration: cutting a GitHub release archives a snapshot and mints a citable DOI, using the metadata in <code>.zenodo.json</code>. Full step-by-step in <code>RELEASING.md</code>. A machine-readable citation lives in <code>CITATION.cff</code> (GitHub renders a “Cite this repository” button from it). The record is <b>published and open</b> at <a href="https://zenodo.org/records/21584351">zenodo.org/records/21584351</a>. From release <b>v1.1.0</b> it is fully <b>open</b>: <code>.zenodo.json</code> sets <code>access_right: open</code> with <code>license: cc-by-4.0</code>, matching <code>LICENSE</code> and the open-access terms of the companion journal. The repository stays private until the manuscript is submitted, then goes public and the release is cut, Zenodo archives private repositories too, so nothing is lost by waiting.</p>
 
   <h2>Citation</h2>
-  <p>Iturralde, P. (2026). <i>The Human Interstitium, Interactive 3D Map</i> (Version 1.1.0) [Software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.21584350">https://doi.org/10.5281/zenodo.21584350</a></p>
+  <p>Iturralde, P. (2026). <i>The Human Interstitium, Interactive 3D Map</i> (Version 1.1.2) [Software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.21584350">https://doi.org/10.5281/zenodo.21584350</a></p>
   <p>Companion to: Iturralde, P. (2026). <i>The cellular lining of a continuous fluid compartment: an interstitial cell atlas and the Interstitial Hydraulic Gating hypothesis.</i> Submitted to <i>Fluids and Barriers of the CNS</i>, current draft v12, 41 references.</p>
 
   <h2>License</h2>

@@ -99,6 +99,8 @@
   #src[open] summary::after{ content:"-"; }
   #src ol{ margin:10px 0 0; padding-left:16px; }
   #src li{ font-family:var(--mono); font-size:9.5px; line-height:1.5; color:var(--ink-dim); margin-bottom:7px; }
+  #src .sf{ margin:9px 0 0; font-family:var(--mono); font-size:8.5px; line-height:1.5;
+    color:var(--ink-faint); }
 
   /* Hover tooltip */
   #tip{ position:fixed; pointer-events:none; z-index:40; background:rgba(5,8,15,0.94); border:1px solid var(--panel-brd);
@@ -155,6 +157,15 @@
   #loading{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:60;
     font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:#6b6350; background:#e6dfce; transition:opacity .5s; }
   #loading.gone{ opacity:0; pointer-events:none; }
+
+  /* Compact rail inside #head, only used in the 761-1149px band. */
+  #miniBar{ display:none; }
+  #miniBar button{ flex:1; padding:6px 4px; border:1px solid rgba(255,255,255,.22);
+    border-radius:7px; background:rgba(255,255,255,.07); color:#dde4ee;
+    font-family:var(--mono); font-size:9px; letter-spacing:.08em;
+    text-transform:uppercase; cursor:pointer; transition:all .14s; }
+  #miniBar button:hover{ color:#fff; background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.34); }
+  #miniBar button.on{ background:#fff; color:#0b0f1a; border-color:#fff; font-weight:600; }
 
   /* Scenarios (top-center) */
   #scenarios{ top:18px; left:50%; transform:translateX(-50%); padding:12px 14px; width:min(560px,44vw); }
@@ -220,6 +231,40 @@
   body.figmode three-d-stage::part(toolbar){ display:none !important; }
   body.figmode #caption.show{ display:block; opacity:1; pointer-events:auto; }
 
+  /* Mid band: 761-1149px. The full desktop layout needs ~1150px, so panels
+     are recomposed here into a left column, a narrow top-centre scenario row,
+     and a right column. Without this the fixed panels overlap. */
+  @media (min-width:761px) and (max-width:1149px){
+    #head{ top:14px; left:14px; max-width:200px; padding:12px 14px; }
+    #head h1{ font-size:14.5px; }
+    #head .sub{ font-size:10.5px; line-height:1.45; margin-top:5px;
+      display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    #head .tag{ display:none; }
+    #systems{ top:150px; left:14px; width:196px; padding:11px 12px; }
+    /* #atlas is the lower half of the same left-middle column as #systems in
+       the full layout, so it follows #systems into the left rail. */
+    #atlas{ top:auto; bottom:14px; left:14px; width:196px; padding:11px 12px;
+      max-height:calc(100vh - 420px); }
+    #atlas #popList{ overflow-y:auto; }
+    /* Right column: #ctl uses the full height while #warn is hidden, and
+       yields the lower slot only when #warn actually reveals itself. */
+    #ctl{ top:14px; right:14px; width:196px; padding:11px 12px;
+      max-height:calc(100vh - 28px); overflow-y:auto; }
+    body.warn-on #ctl{ max-height:calc(100vh - 320px); }
+    /* No room to keep these on screen permanently, so they become on-demand:
+       legend and sources open from the #miniBar rail, the warning panel
+       reveals itself whenever a system leaves its nominal flow. */
+    #legend, #src{ display:none; }
+    #legend.mshow, #src.mshow{ display:block; left:224px; top:210px; right:auto;
+      bottom:14px; width:250px; max-height:none; overflow:auto; z-index:46; }
+    #warn{ display:none; right:14px; bottom:14px; width:196px;
+      max-height:270px; overflow-y:auto; }
+    #warn.stress{ display:block; }
+    #miniBar{ display:flex; gap:6px; margin-top:9px; }
+    #scenarios{ top:14px; width:min(360px,30vw); padding:10px 12px; }
+    #caption{ top:auto; bottom:14px; width:min(420px,38vw); }
+  }
+
   @media (max-width:760px){
     #legend,#src,#head .tag{ display:none; }
     #head{ top:10px; left:10px; right:10px; max-width:none; padding:11px 13px; }
@@ -240,6 +285,10 @@
     #info{ left:10px; right:10px; width:auto; top:92px; bottom:auto; transform:translateY(-140%); }
     #info.show{ transform:translateY(0); }
     #warn{ display:none; }
+    /* #atlas was never given a phone slot and defaulted to left:376px. */
+    #atlas{ top:auto; bottom:178px; left:10px; right:10px; width:auto;
+      max-height:38vh; padding:8px 10px; overflow:auto; }
+    #atlas .sec-h{ display:none; }
     #ctl::-webkit-scrollbar, #sysList::-webkit-scrollbar{ height:5px; }
     #ctl::-webkit-scrollbar-thumb, #sysList::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.16); border-radius:3px; }
   }
@@ -267,6 +316,10 @@
     <h1>The Human Interstitium</h1>
     <p class="sub">Interactive companion to Iturralde (2026), <em>The cellular lining of a continuous fluid compartment</em>. Six fluid/transport systems + a 13-population cell-atlas overlay, staged into disease scenarios and exportable as figures. Use Scale to zoom body ↔ micro.</p>
     <span class="tag">Schematic · manuscript companion</span>
+    <div id="miniBar">
+      <button id="mLegend" type="button">Legend</button>
+      <button id="mSrc" type="button">Sources</button>
+    </div>
   </div>
 
   <div id="systems" class="panel">
@@ -345,11 +398,28 @@
   <details id="src" class="panel">
     <summary>Literature basis</summary>
     <ol>
-      <li>Benias et&nbsp;al. (2018) “Structure &amp; Distribution of an Unrecognized Interstitium,” <em>Sci. Rep.</em>, collagen-bundle lattice &amp; fluid spaces.</li>
-      <li>Iliff / Nedergaard (2012-13), AQP4 peri-arterial glymphatic clearance.</li>
-      <li>Louveau et&nbsp;al. (2015) <em>Nature</em>, meningeal lymphatic vessels.</li>
-      <li>Baluk et&nbsp;al. (2007), lymphatic button junctions &amp; anchoring filaments.</li>
+      <li><b>[1]</b> Buechler, M.B. et al. (2021) Cross-tissue organization of the fibroblast lineage. <em>Nature</em> 593, 575-579</li>
+      <li><b>[3]</b> Popescu, L.M. &amp; Faussone-Pellegrini, M.S. (2010) Telocytes: from interstitial cells of Cajal to telocytes. <em>J. Cell. Mol. Med.</em> 14, 729-740</li>
+      <li><b>[4]</b> Huizinga, J.D. et al. (1995) W/kit gene required for interstitial cells of Cajal and for intestinal pacemaker activity. <em>Nature</em> 373, 347-349</li>
+      <li><b>[5]</b> Stecco, C. et al. (2018) The fasciacytes: a new cell devoted to fascial gliding regulation. <em>Clin. Anat.</em> 31, 667-676</li>
+      <li><b>[7]</b> Vanlandewijck, M. et al. (2018) A molecular atlas of cell types and zonation in the brain vasculature. <em>Nature</em> 554, 475-480</li>
+      <li><b>[8]</b> Rodda, L.B. et al. (2018) Single-cell RNA sequencing of lymph node stromal cells reveals niche-associated heterogeneity. <em>Immunity</em> 48, 1014-1028</li>
+      <li><b>[10]</b> Dominici, M. et al. (2006) Minimal criteria for defining multipotent mesenchymal stromal cells. <em>Cytotherapy</em> 8, 315-317</li>
+      <li><b>[11]</b> Chakarov, S. et al. (2019) Two distinct interstitial macrophage populations coexist across tissues in specific subtissular niches. <em>Science</em> 363, eaau0964</li>
+      <li><b>[13]</b> Wigle, J.T. &amp; Oliver, G. (1999) Prox1 function is required for the development of the murine lymphatic system. <em>Cell</em> 98, 769-778</li>
+      <li><b>[14]</b> Iliff, J.J. et al. (2012) A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes, including amyloid β. <em>Sci. Transl. Med.</em> 4, 147ra111</li>
+      <li><b>[15]</b> Louveau, A. et al. (2015) Structural and functional features of central nervous system lymphatic vessels. <em>Nature</em> 523, 337-341</li>
+      <li><b>[17]</b> Møllgård, K. et al. (2023) A mesothelium divides the subarachnoid space into functional compartments. <em>Science</em> 379, 84-88</li>
+      <li><b>[20]</b> Mukherjee, S. &amp; Tithof, J. (2022) Model of glymphatic clearance of aggregating proteins from the brain interstitium. <em>Phys. Rev. E</em> 105, 024405</li>
+      <li><b>[21]</b> DeSisto, J. et al. (2020) Single-cell transcriptomic analyses of the developing meninges reveal meningeal fibroblast diversity and function. <em>Dev. Cell</em> 54, 43-59</li>
+      <li><b>[22]</b> Skelly, D.A. et al. (2018) Single-cell transcriptional profiling reveals cellular diversity and intercommunication in the mouse heart. <em>Cell Rep.</em> 22, 600-610</li>
+      <li><b>[31]</b> Rinkevich, Y. et al. (2015) Identification and isolation of a dermal lineage with intrinsic fibrogenic potential. <em>Science</em> 348, aaa2151</li>
+      <li><b>[32]</b> Benias, P.C. et al. (2018) Structure and distribution of an unrecognized interstitium in human tissues. <em>Sci. Rep.</em> 8, 4947</li>
+      <li><b>[33]</b> Cenaj, O. et al. (2021) Evidence for continuity of interstitial spaces across tissue and organ boundaries in humans. <em>Commun. Biol.</em> 4, 436</li>
+      <li>Baluk, P. et al. (2007) Functionally specialized junctions between endothelial cells of lymphatic vessels. <em>J. Exp. Med.</em> 204, 2349-2362</li>
     </ol>
+    <p class="sf">Bracketed numbers are reference indices in the companion review; the final
+      entry is cited in the model but not numbered there.</p>
   </details>
 
   <div id="tip"><div class="ts"></div><div class="tt"></div><div class="tr"></div></div>
@@ -374,5 +444,42 @@
 
   <script src="three-d-stage.js"></script>
   <script type="module" src="interstitium-model.js?v=3"></script>
+<script>
+  // 761-1149px band: legend and sources open from the #miniBar rail, and
+  // #warn reveals itself when any system leaves nominal flow.
+  (function(){
+    var legend = document.getElementById('legend');
+    var src = document.getElementById('src');
+    var pairs = [[document.getElementById('mLegend'), legend],
+                 [document.getElementById('mSrc'), src]];
+    pairs.forEach(function(p){
+      var btn = p[0], el = p[1];
+      if (!btn || !el) return;
+      btn.addEventListener('click', function(){
+        var showing = !el.classList.contains('mshow');
+        pairs.forEach(function(q){
+          if (q[1]) q[1].classList.remove('mshow');
+          if (q[0]) q[0].classList.remove('on');
+        });
+        if (showing) {
+          el.classList.add('mshow');
+          btn.classList.add('on');
+          if (el.tagName === 'DETAILS') el.open = true;
+        }
+      });
+    });
+    var w = document.getElementById('warn');
+    if (w) {
+      var upd = function(){
+        var stressed = w.classList.contains('alert')
+          || !!w.querySelector('.wrow.dn, .wrow.up, .wrow.risk');
+        if (stressed !== w.classList.contains('stress')) w.classList.toggle('stress', stressed);
+        document.body.classList.toggle('warn-on', stressed);
+      };
+      new MutationObserver(upd).observe(w, { attributes:true, childList:true, subtree:true });
+      upd();
+    }
+  })();
+</script>
 </body>
 </html>

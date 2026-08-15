@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21584350.svg)](https://doi.org/10.5281/zenodo.21584350)
 
-**Published record:** https://zenodo.org/records/21584350
+**Published record:** https://doi.org/10.5281/zenodo.21584350 (concept DOI, resolves to the latest version)
 
 An interactive, literature-grounded 3D visualization of the human interstitium
 and the five fluid systems it physically connects: the **circulatory**
@@ -21,11 +21,19 @@ The map is where that claim becomes testable. Hydration is a continuous, model-w
 > **Author:** Pablo Iturralde · ORCID: [`0000-0003-4106-4433`](https://orcid.org/0000-0003-4106-4433)
 > **Affiliation:** Brown University
 > **Copyright:** © 2026 Pablo Iturralde
-> **Version:** 1.1.1 · 2026-08-15
+> **Version:** 1.1.2 · 2026-08-15
 > **Status:** Public. Companion manuscript submitted to *Fluids and Barriers of the CNS*, 2026-08-15; under editorial consideration.
 > **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) from the v1.1.0 release onward. See [`LICENSE`](./LICENSE).
 
-**v1.1.1 (patch, 2026-08-15)** — interface fix only. No change to the model, geometry, data, figures, or any manuscript content.
+**v1.1.2 (patch, 2026-08-15)** — interface and documentation only. No change to the model, geometry, data, figures, or any manuscript content.
+>
+> - Added a 761–1149px layout band so laptop-width windows get the full desktop interface. Previously the fixed panels overlapped badly in that range: `#scenarios` covered the systems list, `#warn` covered the controls, and `#atlas` floated over the model at `left:376px`.
+> - In that band the legend and literature list open on demand from a rail in the header, and the flow-warning panel reveals itself when a system leaves nominal flow, releasing its reserved space back to the control panel otherwise.
+> - Corrected the device router to decide on input type (touch points, `pointer: coarse`, `hover: none`) and viewport **width**, not screen resolution. The old test sent 1366×768 laptops to the touch build.
+> - Expanded the in-app literature list from 4 entries to all **19** sources the model actually cites, and aligned the Zenodo `references` field to the same set.
+> - Gave `#atlas` a phone-width slot; it previously overflowed at `≤760px`.
+>
+> **v1.1.1 (patch, 2026-08-15)** — interface fix only. No change to the model, geometry, data, figures, or any manuscript content.
 >
 > - Repaired 59 malformed `rgba()` values and 3 malformed `cubic-bezier()` values across the mobile and desktop stylesheets. Each was missing an argument separator (`rgba(255,255,255.03)` for `rgba(255,255,255,.03)`), so CSS parsers discarded the whole declaration and unselected control buttons rendered with no background fill.
 > - Raised unselected-control contrast on both builds: label text from 0.58–0.62 to 0.78–0.82 alpha, a `rgba(255,255,255,.07)` fill and `.22` border on every control class, and toggled-off system rows from 0.4 to 0.72 opacity.
@@ -40,9 +48,9 @@ The map is where that claim becomes testable. Hydration is a continuous, model-w
 | File | Description |
 |------|-------------|
 | `Interstitial-System-3D-Map.html` | Desktop version (source; loads three.js via CDN) |
-| `Interstitial-System-3D-Map_desktop_v1.1.1.html` | Desktop, self-contained single file (as archived on Zenodo) |
+| `Interstitial-System-3D-Map_desktop_v1.1.2.html` | Desktop, self-contained single file (as archived on Zenodo) |
 | `Interstitial-System-3D-Map-Mobile.html` | Mobile version, tap-select, bottom-sheet UI, confocal palette |
-| `Interstitial-System-3D-Map_mobile_v1.1.1.html` | Mobile, self-contained single file (as archived on Zenodo) |
+| `Interstitial-System-3D-Map_mobile_v1.1.2.html` | Mobile, self-contained single file (as archived on Zenodo) |
 | `interstitium-model.js` | Shared model: geometry, materials, systems, flows, hydration logic |
 | `three-d-stage.js` | 3D viewer/exporter shell (renderer, lighting, OrbitControls, OBJ/GLB export) |
 | `index.html` | Redirect to the desktop version |
@@ -53,8 +61,8 @@ The map is where that claim becomes testable. Hydration is a continuous, model-w
 
 - **Desktop:** open `Interstitial-System-3D-Map.html` in a modern browser (Chrome, Safari, Firefox, Edge).
 - **In a browser, no download:** https://pabloiturralde.github.io/interstitium-3d-map/ — served by GitHub Pages, routes phones and tablets to the touch build automatically. This is the link to give readers and reviewers.
-- **Offline / portable:** open `Interstitial-System-3D-Map_desktop_v1.1.1.html` (or `Interstitial-System-3D-Map_mobile_v1.1.1.html`) directly, no server needed.
-- **iPhone / iPad:** save `Interstitial-System-3D-Map_mobile_v1.1.1.html` to the **Files** app and open it there.
+- **Offline / portable:** open `Interstitial-System-3D-Map_desktop_v1.1.2.html` (or `Interstitial-System-3D-Map_mobile_v1.1.2.html`) directly, no server needed.
+- **iPhone / iPad:** save `Interstitial-System-3D-Map_mobile_v1.1.2.html` to the **Files** app and open it there.
   Do **not** open it through a Google Drive link, Drive serves HTML as plain text and will show source code instead of running it.
 
 > A `*.standalone.html` build still fetches the three.js library from a CDN on
@@ -121,18 +129,19 @@ release archives a snapshot and mints a citable DOI, using the metadata in
 A machine-readable citation lives in [`CITATION.cff`](./CITATION.cff) (GitHub
 renders a "Cite this repository" button from it).
 
-The record is **published and open** at https://zenodo.org/records/21584350. From release **v1.1.0** it is fully **open**: `.zenodo.json` sets
+The record is **published and open** at https://doi.org/10.5281/zenodo.21584350 (concept DOI, always resolves to the latest version). From release **v1.1.0** it is fully **open**: `.zenodo.json` sets
 `access_right: open` with `license: cc-by-4.0`, matching [`LICENSE`](./LICENSE)
 and the open-access terms of the companion journal. The repository stays private
 until the manuscript is submitted, then goes public and the release is cut, Zenodo archives private repositories too, so nothing is lost by waiting.
 
 ## Citation
 
-> Iturralde, P. (2026). *The Human Interstitium, Interactive 3D Map* (Version 1.1.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21584350
+> Iturralde, P. (2026). *The Human Interstitium, Interactive 3D Map* (Version 1.1.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21584350
 >
 > Companion to: Iturralde, P. (2026). *The cellular lining of a continuous fluid compartment: an interstitial cell atlas and the Interstitial Hydraulic Gating hypothesis.* Submitted to *Fluids and Barriers of the CNS*., current draft v12, 41 references.
 
-**DOI:** [`10.5281/zenodo.21584350`](https://doi.org/10.5281/zenodo.21584350)
+**DOI:** [`10.5281/zenodo.21584350`](https://doi.org/10.5281/zenodo.21584350) — concept DOI, all versions.
+Version DOIs: [`…21956307`](https://doi.org/10.5281/zenodo.21956307) (v1.1.1), [`…21584351`](https://doi.org/10.5281/zenodo.21584351) (v1.1.0).
 
 ## License
 
