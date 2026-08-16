@@ -1,6 +1,6 @@
 # Asset manifest, v11 (FBCNS submission set)
 
-Last updated 2026-08-13 (v13.2). Every file the submission depends on, what generates it, and
+Last updated 2026-08-16. Every file the submission depends on, what generates it, and
 what state it is in. Update this file whenever a figure or the tool is rebuilt.
 
 ## Manuscript
@@ -8,23 +8,49 @@ what state it is in. Update this file whenever a figure or the tool is rebuilt.
 | File | State |
 | --- | --- |
 | `Iturralde_2026_FBCNS_v16_submission.docx` | **Submission file.** v15 with the two orphaned table notes repaired. The Table 1 lineage key and the Table 2 abbreviations line had been left behind in the body when the tables moved to the end of the document in v13; both now sit directly beneath their own table. The abbreviations line was also carrying Heading 2 style, so it appeared in the body as a section heading; it is now a 9pt italic table note matching the Table 1 key. Found while reading the iThenticate report, not flagged by it. |
-| `Iturralde_2026_FBCNS_v15_submission.docx` | Superseded by v16 (table notes only). v14 with the Table 1 lineage shading restored. Each row-number cell now carries a light lineage tint with the numeral in the matching dark tone, sampled from the Figure 1 legend: fibroblast/stromal `F0DFCF`/`8A4E22`, vascular mural `F1D9D8`/`8C302C`, immune `DCE4EF`/`2F5478`, pacemaker and telocyte `DCE9DD`/`336136`, lymphatic/CSF `FBDCDC`/`B93E3E`. The note under the table is now a working key: each lineage name sits on its own tint and lists the rows it covers, so the mapping still reads if the table prints in grayscale. No other cell, column, or table takes colour. |
-| `Iturralde_2026_FBCNS_v14_submission.docx` | Superseded by v15 (Table 1 shading only). v13 with the body text moved to first-person singular: four sentences carried "we" (the annotation-effort sentence in Background, the IHG proposal, the hypothesis-not-a-finding caveat, and the priorities sentence in the conclusion) and now read "I". No other text, formatting or pagination changed. The Declarations keep third-person "The author", which is BMC's required form there. |
-| `Iturralde_2026_FBCNS_v13_submission.docx` | Superseded by v14 (voice only). Rebuilt against the published FBCNS/BMC guidelines: no page breaks, no table shading or colour, line AND page numbering, Declarations section with all seven required subheadings, List of abbreviations, software-format Availability statement, figure legends under 300 words with titles under 15, no inline URLs. |
-| `Iturralde_2026_FBCNS_v12_submission.docx` | Superseded. All 19 audit changes executed; no annotations, no highlights. FBCNS/BMC format: Times 12pt, double-spaced, continuous line numbers, figure legends and both tables on their own pages at the end, no embedded figures. |
-| `SUBMISSION-STEPS.md` | Ordered portal walkthrough: pre-flight, upload order, each portal field, post-submission tasks. Read alongside `../../SUBMISSION-COMMANDS.txt`, which carries the git and release commands. |
-| `manuscript_v16_FBCNS.md` | Source of the submission docx. Clean text, first-person singular; Table 1 note carries the lineage-to-row mapping. Note placement here was already correct; the defect was in the docx conversion only. |
-| `manuscript_v15_FBCNS.md` | Superseded. |
-| `manuscript_v14_FBCNS.md` | Superseded; note lacked the row mapping. |
-| `manuscript_v12_FBCNS.md` | Superseded; plural-voice text kept for provenance. |
-| `Iturralde_2026_v16_circulation_proof.html` | **Reading copy for circulation**: figures embedded in position as data URIs, exports to PDF as-is; first-person voice, Table 1 lineage shading, both table notes under their tables. All four figures re-embedded 14 Aug from the clean submission PNGs at 1700px on the long side, JPEG q0.90 — the previous embeds of Figures 3 and 4 carried damaged JPEG scan data (colour cast and block tearing across the lower third; Figure 4 panel d had illegible labels). The submission PNGs were never affected. Figure images are also capped at 5.9in tall (`max-height`, aspect preserved) so that a tall portrait figure and its caption fit inside one page box: Figures 2 and 4 previously measured ~1040px against an ~865px content height, which forced their captions onto the following page on print. Figures 1 and 3 are under the cap and unchanged; Figures 2 and 4 now render at about 74% of column width. Send this (or its PDF) for feedback. |
-| `Iturralde_2026_FBCNS_v11_working.docx` | Superseded annotated draft. FBCNS/BMC format: Times 12pt, double-spaced, continuous line numbers, figure legends and both tables on their own pages at the end, no embedded figures (BMC requires figures as separate files). The 19 audit notes are **highlighted yellow**: delete each once addressed. |
-| `manuscript_v11_FBCNS.md` | Superseded; retains the 19 audit flags for reference. Restructured history-first, IHG moved forward, 19 `[AUDIT]` flags awaiting your rewrites. Not yet a .docx, convert once the audit flags are cleared, so the docx is not immediately stale. |
-| `manuscript.md` | v10. Frozen reference copy; the v10 abstract and original section order live here. |
-| `Iturralde_2026_Comprehensive_Interstitial_Cell_Atlas_v10.docx` | v10 submission draft, figures placed. Superseded in structure by v11. |
-| `..._v9.docx` | Kept for provenance. Contains the incorrect `Genome Biol.` citation for [24]. |
+| `manuscript_v16_FBCNS.md` | Source of the submission docx. Clean text, first-person singular; Table 1 note carries the lineage-to-row mapping. |
+| `Iturralde_2026_v16_circulation_proof.html` | **Reading copy for circulation**: figures embedded in position as data URIs, exports to PDF as-is. All four figures re-embedded 14 Aug from the clean submission PNGs at 1700px on the long side, JPEG q0.90 — the previous embeds of Figures 3 and 4 carried damaged JPEG scan data. Figure images capped at 5.9in tall so a tall portrait figure and its caption fit inside one page box. |
+| `Iturralde_2026_proof_with_figures.html` | Printable proof, all four figures embedded as data URIs. |
+| `The cellular lining of a continuous fluid compartment, v16 circulation proof.pdf` | The circulated PDF. Timestamped; see **Timestamp proof** below. |
 | `refs.bib` | 41 entries. [24] corrected to *Nat. Genet.* 55, 66-77 (2023). Vancouver-compatible, which is what BMC needs. |
-| `presubmission-inquiries.md` | Three tuned enquiry letters. **FBCNS accepts unsolicited reviews, so variant B is optional**: the plan is now direct submission there. |
+
+### Removed from the repository, 16 August 2026
+
+Working drafts v4–v15, `manuscript.md`, `cover-letter-FBCNS.md`,
+`presubmission-inquiries.md`, `SUBMISSION-STEPS.md` and `SUBMISSION-COMMANDS.txt` were
+removed from the public repository **and from its git history** (`git filter-repo`, force
+push). The repository is public and reference [42] points reviewers at it, so submission
+correspondence, APC-negotiation notes and pitches to other journals did not belong there.
+All of it is retained privately in `~/Documents/manuscript-private/`.
+
+Superseded standalone builds `_v1.1.0.html` and `_v1.1.1.html` were removed in the same
+pass; both remain archived on their Zenodo version records.
+
+## Timestamp proof
+
+| Field | Value |
+| --- | --- |
+| File | `The cellular lining of a continuous fluid compartment, v16 circulation proof.pdf` |
+| SHA-256 | `1449b0d1996c670dd4234d5e518798c5ce5ce1f94c4a2a96651f851c6c40ad5f` |
+| Proof | same filename with `.ots` appended |
+| Anchored | Bitcoin blocks **962633** and **962636** |
+
+Transactions:
+
+- `1f16efb66860304523105662c4922150e4fe5134a948c166f0044430529753fe` (block 962633)
+- `5358510a8ac9a0d7a28e97dcb21c257682e476526eba1cb57ae8b3a1bb25426f` (block 962636)
+
+Two independent confirmations; three calendar servers still show pending, which does not
+matter once any block attestation exists. The block timestamp is the priority date and is
+checkable on any block explorer without OpenTimestamps, without a Bitcoin node, and
+independently of this repository continuing to exist.
+
+`ots verify` requires a local Bitcoin node and will fail without one. To check without a
+node, use the web verifier at opentimestamps.org, or look up either transaction above.
+
+**The proof binds those exact bytes.** Regenerating the PDF, even cosmetically, invalidates
+the `.ots`; a fresh timestamp would be required. Never keep an `.ots` whose PDF has
+changed — it looks like evidence and verifies against nothing.
 
 ## Figures
 
@@ -61,9 +87,9 @@ manuscript carries legends only.
 | --- | --- |
 | `repo/Interstitial-System-3D-Map.html` + `interstitium-model.js` + `three-d-stage.js` | Development source. Script tag carries `?v=3` for cache busting. |
 | `repo/Interstitial-System-3D-Map-Mobile.html` | Mobile layout. |
-| `repo/Interstitial-System-3D-Map_desktop_v1.1.0.html` | **Standalone deposit build**, 0.28 MB, everything inlined, opens offline with no installation. This is the file the manuscript cites. Renamed from v1.0.0 with the release bump. |
-| `repo/Interstitial-System-3D-Map_mobile_v1.1.0.html` | Standalone mobile build, 0.29 MB. |
-| `repo/index.html` | Redirect to the desktop version. |
+| `repo/Interstitial-System-3D-Map_desktop_v1.1.2.html` | **Standalone deposit build**, everything inlined, opens offline. The manuscript cites the v1.1.0 build by DOI; that record is unchanged and still resolves. |
+| `repo/Interstitial-System-3D-Map_mobile_v1.1.2.html` | Standalone mobile build. |
+| `repo/index.html` | Device router. Decides on input type (touch points, `pointer: coarse`, `hover: none`) and viewport **width**, not screen resolution: an earlier resolution test sent 1366×768 laptops to the touch build. Both builds stay reachable by direct link from the fallback list. |
 
 Both standalone builds are currently **in sync** with the working copies at the project
 root. Regenerate them whenever `interstitium-model.js` changes, or the deposit will
@@ -73,18 +99,19 @@ archive an older model than the one that produced the figures.
 
 | File | Note |
 | --- | --- |
-| `repo/.zenodo.json` | Authoritative for the Zenodo record. **Now `access_right: open`, `license: cc-by-4.0`, version 1.1.0**: resolving AUDIT 19. ⚠ `LICENSE` still reads all-rights-reserved and now contradicts this; replace it with CC BY 4.0 before the release, or revert the metadata. |
-| `repo/CITATION.cff` | v1.1.0, 2026-08-12, `license: CC-BY-4.0`. Agrees with `.zenodo.json`. |
+| `repo/.zenodo.json` | Version 1.1.2, `access_right: open`, `license: cc-by-4.0`, 23 references. Read only by the Zenodo GitHub webhook, which is **not in use** — releases are published by hand via "New version" so the curated figures and README PDF survive. It is the source of truth to paste from, not an automation. |
+| `repo/CITATION.cff` | v1.1.2, `license: CC-BY-4.0`. Agrees with `.zenodo.json`. |
 | `repo/LICENSE` | **CC BY 4.0**, consistent with the open deposit. Prior all-rights-reserved text preserved in `LICENSE-previous-all-rights-reserved.txt` and governs any copy circulated before the v1.1.0 release. |
 | `repo/RELEASING.md` | The release procedure. Version has to be updated in three places before tagging. |
 | Concept DOI | 10.5281/zenodo.21584350, always resolves to latest. Cite the **version** DOI in the manuscript. |
+| Version DOIs | v1.1.0 `21584351` (cited as [42] in the submission), v1.1.1 `21956307`, v1.1.2 `21957747`. |
 
 ## Reader-facing documents
 
 | File | Note |
 | --- | --- |
 | `Iturralde_2026_proof_with_figures.html` | Printable proof, all four figures embedded as data URIs, `break-inside: avoid` on figure blocks. Source for the reading PDF. Still says v10 in the title, bump when v11 body is final. |
-| `readme-pdf/README.html` | Formatted README for PDF export. Carries the IHG framing and the 41-reference basis. |
+| `readme-pdf/README.html` | Formatted README for PDF export. Carries the IHG framing and the full source list: 23 works the map draws on, grouped as structural/cellular basis (19) and baseline flow velocities (4). The review cites 41; the remainder address matters the map does not depict. Uses static font weights — a variable-axis Newsreader request was producing an 18 MB export from a text-only document. |
 | `repo/README.md` | Repository README, same content in Markdown. |
 
 ## Before submitting to FBCNS
@@ -246,7 +273,7 @@ states it as fact rather than as an understanding. [redacted]
 
 ### Cover letter
 
-`cover-letter-FBCNS.md` covers every element the journal asks for: why FBCNS, the policy
+`cover-letter-FBCNS.md` (now held privately, see *Removed from the repository*) covers every element the journal asks for: why FBCNS, the policy
 declarations, competing interests, funding, approval for submission, and confirmation the
 work is neither published nor under consideration elsewhere. It also carries the APC
 requests.
