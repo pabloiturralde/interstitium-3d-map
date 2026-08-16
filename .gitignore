@@ -18,6 +18,3 @@ scraps/
 
 # Dependencies (none required — kept for safety)
 node_modules/
-
-manuscripts/**/cover_letter_*.pdf
-manuscripts/**/Pablo Iturralde.docx
