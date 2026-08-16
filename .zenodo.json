@@ -1,0 +1,49 @@
+{
+  "upload_type": "software",
+  "title": "The Human Interstitium, Interactive 3D Map",
+  "version": "1.1.1",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Iturralde, Pablo",
+      "affiliation": "Brown University",
+      "orcid": "0000-0003-4106-4433"
+    }
+  ],
+  "description": "<p><strong>Run it in the browser:</strong> <a href=\"https://pabloiturralde.github.io/interstitium-3d-map/\">https://pabloiturralde.github.io/interstitium-3d-map/</a> — desktop and mobile, nothing to install.</p><p><strong>Offline:</strong> this archive contains two self-contained builds. Open <code>Interstitial-System-3D-Map_desktop_v1.1.1.html</code> or <code>Interstitial-System-3D-Map_mobile_v1.1.1.html</code> directly in any browser; no server, build step, or dependencies are required.</p><p>An interactive, literature-grounded 3D visualization of the human interstitium and the five fluid systems it connects: the circulatory, lymphatic, glymphatic, ventricular (CSF), and nervous systems. It is a schematic model built from the primary literature, not a reconstruction from electron microscopy.</p><p><strong>This deposit is the interactive companion to the review \"The cellular lining of a continuous fluid compartment: an interstitial cell atlas and the Interstitial Hydraulic Gating hypothesis\" (Iturralde, 2026), submitted to <em>Fluids and Barriers of the CNS</em>.</strong> It shows the atlas's thirteen stromal and interstitial cell populations as a layer that can be turned on and off. Each cell type carries its positive and negative markers, its tissue niche, and its reference, and populations whose identity is still disputed (such as telocytes, SLYM, and mesenchymal stromal cells) are marked as such.</p><p>The model is also the visual statement of the review's <strong>Interstitial Hydraulic Gating (IHG) hypothesis</strong>: that the interstitium is a mechanically active compartment whose protein-determined, hydration-dependent volume gates the patency of the systems it bounds, every axon, capillary, and perivascular conduit, so that deviation toward dehydration (compression, perivascular collapse) or toward edema (pressure, rupture, blockage) converges on a single mechanical route to neuronal and vascular injury. Neurodegeneration and cerebral ischemia are studied as separate problems with separate culprits, misfolded proteins, vascular occlusion, glymphatic and lymphatic failure, yet each unfolds at the same anatomical crossroads. The hypothesis is falsifiable: it predicts that regional and temporal vulnerability should track the hydration-sensitivity of local interstitial protein composition rather than the intrinsic properties of neurons or vessels alone. The hydration states below are the parameter that drives it; the disease scenarios are its two limbs made visible.</p><p>Four disease scenarios can be loaded with a single click, each framing the view for use as a figure: perineural space collapse leading to failure of the axonal environment; glymphatic clearance failure leading to amyloid-beta accumulation past a Peclet flow threshold; ischemic small-vessel disease from pericyte failure (CADASIL, NOTCH3); and edema, where excess water congests and compresses neighbouring tissue. Two further views cover the normal homeostatic reference and the continuity of the interstitium from skin to fascia to perineural and perivascular spaces.</p><p>The archive contains two self-contained builds, one for desktop and one for mobile, each a single standalone HTML file. Features include roughly 1,000 named parts with click to identify, flow animation across all systems, time-speed control from 1x to 1000x, four hydration states that reshape the whole model, a live panel that reports each system's flow against normal and warns of constriction or congestion, flow-rate readouts, a figure export pipeline (clean figure mode, high-resolution single- and double-column PNG, and a four-panel hydration matrix), and export of the model as OBJ or GLB.</p><p>This is an educational visualization, not a voxel-accurate anatomical dataset.</p>",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "interstitium",
+    "glymphatic system",
+    "cerebrospinal fluid",
+    "lymphatic system",
+    "extracellular matrix",
+    "fluid dynamics",
+    "3D visualization",
+    "interactive anatomy",
+    "hydration",
+    "interstitial hydraulic gating",
+    "neurodegeneration",
+    "cerebral small vessel disease",
+    "WebGL",
+    "three.js",
+    "scientific visualization",
+    "perivascular space",
+    "tissue mechanics",
+    "stromal cell heterogeneity"
+  ],
+  "notes": "Copyright © 2026 Pablo Iturralde. Released under CC BY 4.0 from version 1.1.0; see LICENSE. Digital companion to the review \"Comprehensive Interstitial Cell Atlas\" (Iturralde, 2026), submitted to Fluids and Barriers of the CNS, which advances the Interstitial Hydraulic Gating (IHG) hypothesis illustrated by this model.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/pabloiturralde/interstitium-3d-map",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://pabloiturralde.github.io/interstitium-3d-map/",
+      "relation": "isVariantFormOf",
+      "scheme": "url"
+    }
+  ]
+}

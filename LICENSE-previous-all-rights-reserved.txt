@@ -1,0 +1,32 @@
+Copyright © 2026 Pablo Iturralde. All rights reserved.
+ORCID: 0000-0003-4106-4433
+Author affiliation: Brown University
+
+"The Human Interstitium, Interactive 3D Map" (the "Work"), including its
+source code, 3D model, geometry, textual annotations, and compiled builds.
+
+ALL RIGHTS RESERVED.
+
+This Work is made available for private viewing and evaluation only. No part
+of this Work may be copied, reproduced, modified, adapted, translated
+published, distributed, publicly displayed, incorporated into other works, or
+used for any purpose, commercial or non-commercial, in whole or in part
+without the PRIOR WRITTEN AUTHORIZATION of the copyright holder.
+
+Any authorized use must include attribution to the copyright holder.
+
+Suggested citation:
+  Iturralde, P. (2026). The Human Interstitium, Interactive 3D Map.
+  Pablo Iturralde, Brown University. ORCID: 0000-0003-4106-4433
+
+The Work is intended for use in a forthcoming scientific publication.
+Unauthorized use may infringe the copyright holder's rights and may compromise
+the associated publication.
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.
+
+For permission requests, contact the copyright holder.
