@@ -38,4 +38,3 @@ Figures are rendered deterministically from the companion 3D model (`../../inter
 4. Verify anytime: `ots verify manuscript.md.ots`
 
 > Re-stamp whenever the file's bytes change, a proof only covers the exact version it was made from.
-- `cover-letter-FBCNS.md` — cover letter for submission, including the APC discount and waiver requests.

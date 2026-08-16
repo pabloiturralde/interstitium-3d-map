@@ -262,25 +262,8 @@ the model: no new detail exists, the pixels were interpolated. If production que
 honest fix is to regenerate the composite from the tool at native 2008 px. The original
 1430 px file is preserved in the Zenodo deposit.
 
-**APC.** [redacted], fixed at acceptance. The cover letter asks for the Brown
-Springer Nature 15 percent affiliated-author discount and, on top of it, discretionary
-[redacted]. Both requests have to be made at submission;
-the guidelines are explicit that requests during review or after acceptance cannot be
-considered. The discount is confirmed on the journal's funding-eligibility page and the letter now
-states it as fact rather than as an understanding. [redacted]
-[redacted]
-[redacted]
-
-### Cover letter
-
-`cover-letter-FBCNS.md` (now held privately, see *Removed from the repository*) covers every element the journal asks for: why FBCNS, the policy
-declarations, competing interests, funding, approval for submission, and confirmation the
-work is neither published nor under consideration elsewhere. It also carries the APC
-requests.
-
-Four suggested reviewers are now named with ORCIDs, each with a one-line statement of the
-expertise that bears on the manuscript, placed after the APC requests. Addressed to the
-Editors. Before sending: confirm the 15 percent discount on the funding-eligibility page.
+**APC.** Handled in the submission correspondence, which is held privately and is not
+part of this repository.
 
 ## Why the tool needs GitHub Pages as well as Zenodo
 
